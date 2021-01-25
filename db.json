@@ -1,0 +1,18 @@
+{
+    "title": "User Experience Quiz",
+    "description": "Utilize o feedback dos usuários para alavancar sua aplicação",
+    "backgroundImage": "https://s3-ap-south-1.amazonaws.com/codeplateau-website/wp-content/uploads/2020/02/07081438/ui-ux.png",
+    "questions": [],
+    "external": [],
+    "theme": {
+        "colors": {
+            "primary": "#8e6dfd",
+            "secondary": "#7c4dff",
+            "mainBg": "#161a40",
+            "contrastText": "#000",
+            "wrong": "#ad1457",
+            "success": "#00bfa5"
+        },
+        "borderRadius": "4px"
+    }
+}
