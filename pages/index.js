@@ -38,10 +38,12 @@ export default function Home() {
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
     <QuizBackGround backgroundImage={db.backgroundImage}>
+      <meta property="og:image" content={db.backgroundImage}></meta>
       <QuizContainer>
         <Widget>
           <Widget.Header>
-            <h1>Experiência do Usuário</h1>
+            <h1>Quiz - Experiência do Usuário</h1>
+            <meta property="og:title" content="Quiz - Experiência do Usuário" key="title" />
           </Widget.Header>
           <Widget.Content>
             <p>Lorem ipsum</p>
