@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 // const BackgroundImage = styled.div`
 //   background-color: #161a40;
 //   background-image: url(${db.bg});
