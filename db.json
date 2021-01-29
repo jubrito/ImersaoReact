@@ -2,7 +2,26 @@
     "title": "User Experience Quiz",
     "description": "Utilize o feedback dos usuários para alavancar sua aplicação",
     "backgroundImage": "https://s3-ap-south-1.amazonaws.com/codeplateau-website/wp-content/uploads/2020/02/07081438/ui-ux.png",
-    "questions": [],
+    "questions": [
+        {
+            "alternatives": [
+                "A", "B", "C"
+            ],
+            "answer": 1,
+            "description": "Pergunta fácil",
+            "image": "",
+            "title": "Qual a diferença entre a, b, c"
+        },
+        {
+            "alternatives": [
+                "A", "B", "C"
+            ],
+            "answer": 1,
+            "description": "Pergunta fácil",
+            "image": "",
+            "title": "Qual a diferença entre a, b, c"
+        }
+    ],
     "external": [],
     "theme": {
         "colors": {
