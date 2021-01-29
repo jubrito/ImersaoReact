@@ -30,9 +30,9 @@ Input.defaultProps = {
     value: '',
 };
 
-Input.PropTypes = {
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string.isRequired,
+Input.propTypes = {
+    onChange: PropTypes.func,
+    placeholder: PropTypes.string,
     name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
 }
