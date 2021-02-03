@@ -1,9 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+// import styled from 'styled-components';
 import Head from 'next/head'; // Componente que permite colocarmos informações no head da página
 import { useRouter } from 'next/router';
+// Configurado via objetos js, animações na montagem do componente
+// motion é uma abstração pras tags do html que iremos animar
+import { motion } from 'framer-motion'; 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
+import Link from '../src/components/Link';
 import Footer from '../src/components/Footer';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
@@ -36,18 +40,19 @@ export default function Home() {
 
   useEffect(() => {
     console.log(gender);
-  }, [gender])
-  
+  }, [gender]);
+
   useEffect(() => {
     console.log(age);
-  }, [age])
-  
-  function submitForm(event){
+  }, [age]);
+
+  function submitForm(event) {
     event.preventDefault(); // impede o recarregamento da página que viola o SPA
-    /*  # QUERY PARAM: Parâmetros que vem na própria rota opcionais para filtros, paginação, passar informações pra outra rota
-      Insomnia: http://localhost:3000/users?search=ar (Buscando users que contenham "ar")   
+    /*  # QUERY PARAM: Parâmetros que vem na própria rota opcionais para filtros, paginação, 
+      passar informações pra outra rota
+      Insomnia: http://localhost:3000/users?search=ar (Buscando users que contenham "ar")
       http://localhost:3000/quiz?name=Juliana (Passando a informação do nome para a rota Quiz) */
-    router.push(`/quiz?name=${name}&age=${age}&gender=${gender}`); 
+    router.push(`/quiz?name=${name}&age=${age}&gender=${gender}`);
   }
 
   return (
@@ -61,7 +66,18 @@ export default function Home() {
       </Head>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          // delay quanto tempo espera pra começar e duração em s
+          transition={{ delay: 0, duration: 0.5 }}
+          variants={{
+            // o elemento terá estados de animação
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>Quiz - Experiência do Usuário</h1>
           </Widget.Header>
@@ -70,22 +86,22 @@ export default function Home() {
               <div className="mainInformations">
                 <div className="mainInformations__item">
                   <p>What's your name?</p>
-                  <Input placeholder="Ex: Juliana Witzke" type="text" id="name" name="name" value="" onChange={(changeEvent) => setName(changeEvent.target.value)}/>
+                  <Input placeholder="Ex: Juliana Witzke" type="text" id="name" name="name" value="" onChange={(changeEvent) => setName(changeEvent.target.value)} />
                 </div>
               </div>
               <div className="mainInformations">
                 <div className="mainInformations__item">
                   <p>Please select your gender:</p>
                   <label htmlFor="male" className="inputRadio">
-                    <Input type="radio" id="male" name="gender" value="male" onChange={(changeEvent) => setGender(changeEvent.target.value)}/>
+                    <Input type="radio" id="male" name="gender" value="male" onChange={(changeEvent) => setGender(changeEvent.target.value)} />
                     Male
                   </label>
                   <label htmlFor="female" className="inputRadio">
-                    <Input type="radio" id="female" name="gender" value="female" onChange={(changeEvent) => setGender(changeEvent.target.value)}/>
+                    <Input type="radio" id="female" name="gender" value="female" onChange={(changeEvent) => setGender(changeEvent.target.value)} />
                     Female
                   </label>
                   <label htmlFor="other" className="inputRadio">
-                    <Input type="radio" id="other" name="gender" value="other" onChange={(changeEvent) => setGender(changeEvent.target.value)}/>
+                    <Input type="radio" id="other" name="gender" value="other" onChange={(changeEvent) => setGender(changeEvent.target.value)} />
                     Other
                   </label>
                 </div>
@@ -103,14 +119,60 @@ export default function Home() {
                   </select>
                 </div>
               </div>
-              <Button type="submit" disabled={gender.length == 0 || age == 0 }>
+              <Button type="submit" disabled={gender.length == 0 || age == 0}>
                 {/* {`Jogar ${name}`} */}
                 Participate
               </Button>
             </form>
           </Widget.Content>
+
         </Widget>
-        <Footer />
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            // o elemento terá estados de animação
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          <Widget.Content>
+            <h1>Quizes da Galera</h1>
+
+            <ul>
+              {db.external.map((externalQuizLink) => {
+                const [projectName, githubUser] = externalQuizLink
+                  .replace(/\//g, '')
+                  .replace(/https?:/, '')
+                  .replace('.vercel.app', '')
+                  .split('.');
+                return (
+                  <li key={externalQuizLink}>
+                    <Widget.Topic
+                      as={Link} // Renderiza como componente link (para garantir SPA)
+                      href={`/quiz/${projectName}___${githubUser}`}
+                    >
+                      {`${githubUser}/${projectName}`}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
+          </Widget.Content>
+        </Widget>
+        <Footer 
+          as={motion.footer}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            // o elemento terá estados de animação
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        />
       </QuizContainer>
       <GitHubCorner />
     </QuizBackground>

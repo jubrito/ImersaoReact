@@ -19,11 +19,6 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // Permitir arquivos react com js
-    "react/jsx-props-no-spreading": [<enabled>, { // permitir spread (...)
-      "html": "ignore" | "enforce",
-      "custom": "ignore" | "enforce",
-      "explicitSpread": "ignore" | "enforce",
-      "exceptions": [<string/>]
-    }],
+    'react/jsx-props-no-spreading': ['off'],
   },
 };

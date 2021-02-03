@@ -1,29 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import AlternativesForm from '../src/components/AlternativesForm';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizContainer from '../src/components/QuizContainer';
-import GitHubCorner from '../src/components/GitHubCorner';
-import Input from '../src/components/Input';
-import Button from '../src/components/Button';
+import React, { useState, useEffect } from 'react';
+import db from '../../db.json';
+import Widget from '../../src/components/Widget';
+import AlternativesForm from '../../src/components/AlternativesForm';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizLogo from '../../src/components/QuizLogo';
+import QuizContainer from '../../src/components/QuizContainer';
+import GitHubCorner from '../../src/components/GitHubCorner';
+import Input from '../../src/components/Input';
+import Button from '../../src/components/Button';
+import BackLinkArrow from '../../src/components/BackLinkArrow';
+
 function LoadingWidget() {
   return (
     <Widget>
       <Widget.Header>
         Carregando...
       </Widget.Header>
-      
       <Widget.Content>
         Carregando...
       </Widget.Content>
     </Widget>
-  )
+  );
 }
 function ResultWidget({ results }) {
-
-  const [resultsCategories, setResultsCategories] = useState({ horrible: 0, bad: 0, regular: 0, good: 0, excelent: 0});
+  const [resultsCategories, setResultsCategories] = useState({
+    horrible: 0, bad: 0, regular: 0, good: 0, excelent: 0,
+  });
 
   const [horribleTotal, setHorribleTotal] = useState(0);
   const [badTotal, setBadTotal] = useState(0);
@@ -32,28 +34,30 @@ function ResultWidget({ results }) {
   const [excelentTotal, setExcelentTotal] = useState(0);
 
   useEffect(() => {
-    results.map(result => {
-      console.log("result")
-      console.log(result)
-      switch(result) {
-        case "1": 
+    results.map((result) => {
+      console.log('result');
+      console.log(result);
+      // eslint-disable-next-line default-case
+      switch (result) {
+        case '1':
           setHorribleTotal(horribleTotal + 1);
           break;
-        case "2": 
+        case '2':
           setBadTotal(badTotal + 1);
           break;
-        case "3": 
+        case '3':
           setRegularTotal(regularTotal + 1);
           break;
-        case "4": 
+        case '4':
           setGoodTotal(goodTotal + 1);
           break;
-        case "5": 
+        case '5':
           setExcelentTotal(excelentTotal + 1);
           break;
+          // console.log('error');
       }
-    })
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
     setResultsCategories({
@@ -61,9 +65,9 @@ function ResultWidget({ results }) {
       bad: badTotal,
       regular: regularTotal,
       good: goodTotal,
-      excelent: excelentTotal
+      excelent: excelentTotal,
     });
-  }, [horribleTotal, badTotal, regularTotal, goodTotal, excelentTotal])
+  }, [horribleTotal, badTotal, regularTotal, goodTotal, excelentTotal]);
 
   function showTotalPoints() {
     return `/${results.length * 5}`;
@@ -74,37 +78,44 @@ function ResultWidget({ results }) {
       <Widget.Header>
         Resultados:
       </Widget.Header>
-      
+
       <Widget.Content>
         <p>Obrigada por participar!</p>
-        {` `}
+        {' '}
         {/* Começa do 0 e adiciona um cada vez que encontrar um resultado ruim (result == 0) */}
         {
           results.reduce((sumResults, currentResult) => {
-          switch(currentResult) {
-            case "1":
-            return sumResults + 1;
-            case "2":
-            return sumResults + 2;
-            case "3":
-            return sumResults + 3;
-            case "4":
-            return sumResults + 4;
-            case "5":
-            return sumResults + 5;
-          }
-          return sumResults;
-        }, 0)} 
+            switch (currentResult) {
+              case '1':
+                return sumResults + 1;
+              case '2':
+                return sumResults + 2;
+              case '3':
+                return sumResults + 3;
+              case '4':
+                return sumResults + 4;
+              case '5':
+                return sumResults + 5;
+              default:
+            }
+            return sumResults;
+          }, 0)
+}
         {/* começamos a contar no 0 */}
         {
           showTotalPoints()
         }
         <p>Respostas por categoria:</p>
-        {`Horrível: ${resultsCategories.horrible}`}<br/>
-        {`Ruim: ${resultsCategories.bad}`}<br/>
-        {`Regular: ${resultsCategories.regular}`}<br/>
-        {`Bom: ${resultsCategories.good}`}<br/>
-        {`Excelente: ${resultsCategories.excelent}`}<br/>
+        {`Horrível: ${resultsCategories.horrible}`}
+        <br />
+        {`Ruim: ${resultsCategories.bad}`}
+        <br />
+        {`Regular: ${resultsCategories.regular}`}
+        <br />
+        {`Bom: ${resultsCategories.good}`}
+        <br />
+        {`Excelente: ${resultsCategories.excelent}`}
+        <br />
         {/* Resultado que precisará ser levado pra tela de quem contratou  */}
         <ul>
           {results.map((result, index) => (
@@ -116,30 +127,32 @@ function ResultWidget({ results }) {
             </li>
           ))}
         </ul>
-        <p></p>
+        <p />
       </Widget.Content>
     </Widget>
-  )
+  );
 }
 
 function QuestionWidget({
-  question, 
-  questionIndex, 
-  totalQuestions, 
+  question,
+  questionIndex,
+  totalQuestions,
   onSubmit,
   addResult,
-  points
+  points,
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = useState(false); // do formulário
-  const hasAlternativeSelected = selectedAlternative !== undefined; // se o usuário selecionou uma alternativa, coloca como true pra poder habilitar o botão
+  // se o usuário selecionou uma alternativa, coloca como true pra poder habilitar o botão
+  const hasAlternativeSelected = selectedAlternative !== undefined;
   const questionId = `question__${questionIndex}`;
 
   const [totalPoints, setTotalPoints] = useState(0);
   const [currentPoints, setCurrentPoints] = useState(0);
 
   function handleQuizPageSubmit() {
-    // const sum = Number(totalPoints) + Number(currentPoints); // ponto da questão selecionada mas ponto da última questão
+    // ponto da questão selecionada mas ponto da última questão
+    // const sum = Number(totalPoints) + Number(currentPoints);
     // setTotalPoints(sum);
     // setCurrentPoints(points);
     // console.log("currentPoints "+ currentPoints);
@@ -148,17 +161,18 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h3>
           {/* Não usa o $ antes do {} pois é sintaxe do React, se fosse sintaxe do js seria ${} */}
-          {`Pergunta ${questionIndex + 1} de ${totalQuestions} `} 
+          {`Pergunta ${questionIndex + 1} de ${totalQuestions} `}
         </h3>
       </Widget.Header>
-      <img 
-        alt="Descrição" 
+      <img
+        alt="Descrição"
         style={{
           width: '100%',
           height: '150px',
-          objectFit: 'cover'
+          objectFit: 'cover',
         }}
         src={question.image}
       />
@@ -171,20 +185,22 @@ function QuestionWidget({
         </p>
 
         <AlternativesForm
-         onSubmit={(event) => {
-          event.preventDefault(); // não atualiza a página
-          setIsQuestionSubmited(true); // respondeu a pergunta 
-          setTimeout(() => {
-            addResult(currentPoints);
-            onSubmit(); // dispara o onsubmit do form (o método handleQuizPageSubmit)
-            setIsQuestionSubmited(false);
-            setSelectedAlternative(undefined);
-          }, 1 * 1000)
-        }}>
-          {/* semelhante as alternativas*/}
+          onSubmit={(event) => {
+            event.preventDefault(); // não atualiza a página
+            setIsQuestionSubmited(true); // respondeu a pergunta
+            setTimeout(() => {
+              addResult(currentPoints);
+              onSubmit(); // dispara o onsubmit do form (o método handleQuizPageSubmit)
+              setIsQuestionSubmited(false);
+              setSelectedAlternative(undefined);
+            }, 1 * 1000);
+          }}
+        >
+          {/* semelhante as alternativas */}
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
-            const isSelected = selectedAlternative === alternativeIndex; // a cor irá mudar apenas no selecionado
+            // a cor irá mudar apenas no selecionado
+            const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
                 as="label"
@@ -203,18 +219,18 @@ function QuestionWidget({
                   }}
                   points={alternative.points}
                   type="radio"
-                  />
+                />
                 {alternative.content}
                 {/* {alternative.points} */}
               </Widget.Topic>
             );
-          })} 
+          })}
 
-           {/* Console.log() no react na tela 
+          {/* Console.log() no react na tela
             <pre>
               {JSON.stringify(question, null, 4)}
             </pre> */}
-         
+
           <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
@@ -222,17 +238,17 @@ function QuestionWidget({
         </AlternativesForm>
       </Widget.Content>
     </Widget>
-  )
+  );
 }
 
 const screenStates = {
   QUIZ: 'QUIZ',
   LOADING: 'LOADING',
-  RESULT: 'RESULT'
-}
+  RESULT: 'RESULT',
+};
 export default function QuizPage() {
   // console.log(db.questions)
-  const [screenState, setScreenState] = useState(screenStates.QUIZ); // estado inicial 
+  const [screenState, setScreenState] = useState(screenStates.QUIZ); // estado inicial
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
@@ -243,7 +259,7 @@ export default function QuizPage() {
     setResults([
       ...results,
       result,
-    ])
+    ]);
   }
 
   // nasce === didMount (componente é montado)
@@ -252,14 +268,14 @@ export default function QuizPage() {
     setTimeout(() => {
       // setScreenState(screenStates.QUIZ)
     }, 1 * 1000);
-  }, [])
+  }, []);
 
   function handleQuizSubmit() {
     const nextQuestion = questionIndex + 1;
     if (nextQuestion < totalQuestions) {
       setCurrentQuestion(questionIndex + 1);
     } else {
-      setScreenState(screenStates.RESULT)
+      setScreenState(screenStates.RESULT);
     }
   }
 
@@ -270,17 +286,17 @@ export default function QuizPage() {
       <QuizContainer>
         <QuizLogo />
         {/* Se for loading renderiza o LoadingWidget */}
-        {screenState == screenStates.LOADING && <LoadingWidget />} 
+        {screenState == screenStates.LOADING && <LoadingWidget />}
         {screenState == screenStates.QUIZ && (
-          <QuestionWidget 
-            question={question} 
+          <QuestionWidget
+            question={question}
             questionIndex={questionIndex}
             totalQuestions={totalQuestions}
             onSubmit={handleQuizSubmit}
             addResult={addResult}
           />
-        )} 
-        {screenState == screenStates.RESULT && <ResultWidget results={results}/>} 
+        )}
+        {screenState == screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>
       <GitHubCorner />
     </QuizBackground>
