@@ -21,7 +21,7 @@ const Widget = styled.div`
   }
 `;
 Widget.Content = styled.div`
-  padding: 24px 32px 32px 32px;
+  padding: 32px;
   & > *:first-child {
     margin-top: 0;
   }

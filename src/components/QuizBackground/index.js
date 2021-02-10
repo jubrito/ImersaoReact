@@ -12,14 +12,12 @@ import styled from 'styled-components';
 
 const QuizBackground = styled.div`
   width: 100%;
+  background-size: cover;
   background-position: center;
   background-image: url(${({ backgroundImage }) => backgroundImage});
   background-color: ${({ theme }) => theme.colors.mainBg};
+  padding-bottom: 50px;
   flex: 1;
-  background-size: initial;
-  background-position: right;
-  background-repeat: no-repeat;
-  height: 100vh; // ajusta ao tamanho da tela
   @media screen and (max-width: 500px) {
     background-image: none;
     &:after {

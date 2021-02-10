@@ -1,85 +1,48 @@
 {
-    "title": "User Experience Quiz",
-    "description": "Utilize o feedback dos usuários para alavancar sua aplicação",
-    "backgroundImage": "https://s3-ap-south-1.amazonaws.com/codeplateau-website/wp-content/uploads/2020/02/07081438/ui-ux.png",
-    "results": [
-        {
-            "point": 1,
-            "title": "Horrible"
-        },
-        {
-            "point": 2,
-            "title": "Bad"
-        },
-        {
-            "point": 3,
-            "title": "Regular"
-        },
-        {
-            "point": 4,
-            "title": "Good"
-        },
-        {
-            "point": 5,
-            "title": "Excelent"
-        }
-    ],
+    "title": "Suas atitudes são sustentáveis?",
+    "description": "Descubra os impactos das suas ações para o planeta e formas de torna-las mais sustentáveis!",
+    "backgroundImage": "https://images.unsplash.com/photo-1464925257126-6450e871c667?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80",
     "questions": [
         {
-            "title": "O que você achou do layout dessa dela?",
-            "description": "Layout",
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ8y0kdISsFytj7NuxU-UXm5sXdMnl9fbxYA&usqp=CAU",
-            "alternatives": [
-                {
-                    "content": "Odiei",
-                    "points": "1"
-                },
-                {
-                    "content": "Mais ou menos",
-                    "points": "2"
-                },
-                {
-                    "content": "Regular",
-                    "points": "3"
-                },
-                {
-                    "content": "Gostei",
-                    "points": "4"
-                },
-                {
-                    "content": "Amei",
-                    "points": "5"
-                }
-            ]
+          "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
+          "title": "Qual a diferença entre = , == e === ?",
+          "description": "Pergunta fácil em!",
+          "answer": 1,
+          "alternatives": [
+            "São a mesma coisa",
+            "O = significa atribuição de valor. Já == verifica a igualdade do valor, enquanto === verifica valor e tipo de variável."
+          ]
         },
         {
-            "title": "O que você achou das cores dessa dela?",
-            "description": "Cores",
-            "image": "https://ideiaconsultoria.com.br/wp-content/uploads/2015/07/significado-de-layout-810x365.png",
-            "alternatives": [
-                {
-                    "content": "Péssimo",
-                    "points": "1"
-                },
-                {
-                    "content": "+-",
-                    "points": "2"
-                },
-                {
-                    "content": "Ok",
-                    "points": "3"
-                },
-                {
-                    "content": "Bom",
-                    "points": "4"
-                },
-                {
-                    "content": "Ótimo",
-                    "points": "5"
-                }
-            ]
+          "image": "https://media.giphy.com/media/Ie2Hs3A0uJRtK/giphy.gif",
+          "title": "Que tipos de dados são suportados em JavaScript?",
+          "description": "E agora? Você sabe?",
+          "answer": 0,
+          "alternatives": [
+            "Number, String, Undefined, Null e Bool.",
+            "Int, String, Undefined, Null e Bool."
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Qual a diferença de window e global?",
+          "answer": 1,
+          "alternatives": [
+            "São a mesma coisa",
+            "window é o escopo global no browser, e global no node"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Qual a forma antiga de trabalhar com AJAX na Web?",
+          "answer": 1,
+          "alternatives": [
+            "JSONHttpRequest",
+            "XMLHttpRequest",
+            "fetch"
+          ]
         }
-    ],
+      ],
     "external": [
         "https://aluraquiz-css.omariosouto.vercel.app/",
         "https://aluraquiz-marvel.omariosouto.vercel.app/"
@@ -90,14 +53,8 @@
             "secondary": "#7c4dff",
             "mainBg": "#161a40",
             "contrastText": "#000",
-            "wrong": "#ad1457",
-            "success": "#00bfa5",
-            "horrible": "#F8E0E0",
-            "bad": "#F7F2E0",
-            "regular": "#F7F8E0",
-            "good": "#F1F8E0",
-            "excelent": "#E0F8E6"
-
+            "wrong": "#FF5722",
+            "success": "#4CAF50"
         },
         "borderRadius": "4px"
     }

@@ -24,111 +24,40 @@ function LoadingWidget() {
   );
 }
 function ResultWidget({ results }) {
-  const [resultsCategories, setResultsCategories] = useState({
-    horrible: 0, bad: 0, regular: 0, good: 0, excelent: 0,
-  });
-
-  const [horribleTotal, setHorribleTotal] = useState(0);
-  const [badTotal, setBadTotal] = useState(0);
-  const [regularTotal, setRegularTotal] = useState(0);
-  const [goodTotal, setGoodTotal] = useState(0);
-  const [excelentTotal, setExcelentTotal] = useState(0);
-
-  useEffect(() => {
-    results.map((result) => {
-      console.log('result');
-      console.log(result);
-      // eslint-disable-next-line default-case
-      switch (result) {
-        case '1':
-          setHorribleTotal(horribleTotal + 1);
-          break;
-        case '2':
-          setBadTotal(badTotal + 1);
-          break;
-        case '3':
-          setRegularTotal(regularTotal + 1);
-          break;
-        case '4':
-          setGoodTotal(goodTotal + 1);
-          break;
-        case '5':
-          setExcelentTotal(excelentTotal + 1);
-          break;
-          // console.log('error');
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    setResultsCategories({
-      horrible: horribleTotal,
-      bad: badTotal,
-      regular: regularTotal,
-      good: goodTotal,
-      excelent: excelentTotal,
-    });
-  }, [horribleTotal, badTotal, regularTotal, goodTotal, excelentTotal]);
-
-  function showTotalPoints() {
-    return `/${results.length * 5}`;
-  }
-
   return (
     <Widget>
       <Widget.Header>
-        Resultados:
+        Tela de Resultado:
       </Widget.Header>
 
       <Widget.Content>
-        <p>Obrigada por participar!</p>
-        {' '}
-        {/* Começa do 0 e adiciona um cada vez que encontrar um resultado ruim (result == 0) */}
-        {
-          results.reduce((sumResults, currentResult) => {
-            switch (currentResult) {
-              case '1':
-                return sumResults + 1;
-              case '2':
-                return sumResults + 2;
-              case '3':
-                return sumResults + 3;
-              case '4':
-                return sumResults + 4;
-              case '5':
-                return sumResults + 5;
-              default:
+        <p>
+          Você acertou
+          {' '}
+          {/* {results.reduce((somatoriaAtual, resultAtual) => {
+            const isAcerto = resultAtual === true;
+            if (isAcerto) {
+              return somatoriaAtual + 1;
             }
-            return sumResults;
-          }, 0)
-}
-        {/* começamos a contar no 0 */}
-        {
-          showTotalPoints()
-        }
-        <p>Respostas por categoria:</p>
-        {`Horrível: ${resultsCategories.horrible}`}
-        <br />
-        {`Ruim: ${resultsCategories.bad}`}
-        <br />
-        {`Regular: ${resultsCategories.regular}`}
-        <br />
-        {`Bom: ${resultsCategories.good}`}
-        <br />
-        {`Excelente: ${resultsCategories.excelent}`}
-        <br />
-        {/* Resultado que precisará ser levado pra tela de quem contratou  */}
+            return somatoriaAtual;
+          }, 0)} */}
+          {results.filter((x) => x).length}
+          {' '}
+          perguntas
+        </p>
         <ul>
           {results.map((result, index) => (
             <li key={`result__${index}`}>
               #
               {index + 1}
+              {' '}
               Resultado:
-              {result}
+              {result === true
+                ? 'Acertou'
+                : 'Errou'}
             </li>
           ))}
         </ul>
-        <p />
       </Widget.Content>
     </Widget>
   );
@@ -215,14 +144,11 @@ function QuestionWidget({
                   id={alternativeId}
                   name={questionId}
                   onChange={() => {
-                    setCurrentPoints(alternative.points);
                     setSelectedAlternative(alternativeIndex);
                   }}
-                  points={alternative.points}
                   type="radio"
                 />
-                {alternative.content}
-                {/* {alternative.points} */}
+                {alternative}
               </Widget.Topic>
             );
           })}
