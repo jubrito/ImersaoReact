@@ -1,6 +1,7 @@
-// Render das telas (da rota Quiz)
 import React, { useState, useEffect } from 'react';
 // import db from '../../../db.json';
+// Render das telas (da rota Quiz)
+import Lottie from 'react-lottie';
 import Widget from '../../components/Widget';
 import AlternativesForm from '../../components/AlternativesForm';
 import QuizBackground from '../../components/QuizBackground';
@@ -10,16 +11,44 @@ import GitHubCorner from '../../components/GitHubCorner';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import BackLinkArrow from '../../components/BackLinkArrow';
+import animationData from './animations/loading.json';
 
 function LoadingWidget() {
+  const [animationState, setAnimationState] = useState({
+    isStopped: true,
+    isPaused: false,
+  });
+
+  // Se tiver um botão por exemplo pra fazer a animação ocorrer teria que ser assim
+  // useEffect(() => {
+  //   setAnimationState({
+  //     ...animationState,
+  //     isStopped: !animationState.isStopped, // o contrário do que tiver
+  //   })
+  // }, []);
+
+  const defaultOptions = {
+    loop: false, // false não roda em loop infinito
+    autoplay: false, // false não carrega a animação quando recarrega
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   return (
     <Widget>
       <Widget.Header>
         Carregando...
       </Widget.Header>
       <Widget.Content>
-        Carregando...
+        <Lottie
+          options={defaultOptions}
+          height="190px"
+          width="100%"
+        />
       </Widget.Content>
+
     </Widget>
   );
 }
@@ -74,20 +103,12 @@ function QuestionWidget({
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = useState(false); // do formulário
   // se o usuário selecionou uma alternativa, coloca como true pra poder habilitar o botão
+  const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
   const questionId = `question__${questionIndex}`;
 
-  const [totalPoints, setTotalPoints] = useState(0);
   const [currentPoints, setCurrentPoints] = useState(0);
 
-  function handleQuizPageSubmit() {
-    // ponto da questão selecionada mas ponto da última questão
-    // const sum = Number(totalPoints) + Number(currentPoints);
-    // setTotalPoints(sum);
-    // setCurrentPoints(points);
-    // console.log("currentPoints "+ currentPoints);
-    // console.log("totalPoints "+ totalPoints);
-  }
   return (
     <Widget>
       <Widget.Header>
@@ -119,17 +140,17 @@ function QuestionWidget({
             event.preventDefault(); // não atualiza a página
             setIsQuestionSubmited(true); // respondeu a pergunta
             setTimeout(() => {
-              addResult(currentPoints);
+              addResult(isCorrect);
               onSubmit(); // dispara o onsubmit do form (o método handleQuizPageSubmit)
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
-            }, 1 * 1000);
+            }, 3 * 1000);
           }}
         >
           {/* semelhante as alternativas */}
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
-            // a cor irá mudar apenas no selecionado
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
@@ -137,7 +158,7 @@ function QuestionWidget({
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && currentPoints}
+                data-status={isQuestionSubmited && alternativeStatus}
               >
                 <Input
                   // style={{ display: 'none '}}
@@ -175,7 +196,7 @@ const screenStates = {
 };
 export default function QuizPage({ externalQuestions, externalBg }) {
   // console.log(db.questions)
-  const [screenState, setScreenState] = useState(screenStates.QUIZ); // estado inicial
+  const [screenState, setScreenState] = useState(screenStates.LOADING); // estado inicial
   const totalQuestions = externalQuestions.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
@@ -194,8 +215,8 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   // callbackfunction
   useEffect(() => {
     setTimeout(() => {
-      // setScreenState(screenStates.QUIZ)
-    }, 1 * 1000);
+      setScreenState(screenStates.QUIZ);
+    }, 3 * 1000);
   }, []);
 
   function handleQuizSubmit() {

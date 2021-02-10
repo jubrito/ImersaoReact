@@ -9,9 +9,9 @@ export default function QuizDaGaleraPage({ externalDB }) {
   return (
     <div>
       <ThemeProvider theme={externalDB.theme}>
-        <QuizScreen 
-          externalQuestions={ externalDB.questions } 
-          externalBg={ externalDB.bg } 
+        <QuizScreen
+          externalQuestions={externalDB.questions}
+          externalBg={externalDB.bg}
         />
       </ThemeProvider>
       {/* Dados do quiz
@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
   // Promisses (promessas) podem dar certo ou dar errado
   const [projectName, gitHubUser] = context.query.id.split('___');
 
-  try{
+  try {
     const externalDB = await fetch(`https://${projectName}.${gitHubUser}.vercel.app/api/db`)
       .then((serverResponse) => {
         // O fetch retorna o .then() quando o primeiro bit que chegou do servidor chegar no browser
@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
         }
         throw new Error('Error during re quest');
       })
-      .then((objectServerResponse) => objectServerResponse)
+      .then((objectServerResponse) => objectServerResponse);
       // .catch((err) => {
       //   console.log('Erro na requisição (ou no fetch ou no then)', err);
       // });
@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
         externalDB,
       }, // will be passed to the page component as props
     };
-  } catch(err) {
+  } catch (err) {
     throw new Error(err);
     // context.res.redirect...;
   }
