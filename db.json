@@ -1,7 +1,7 @@
 {
     "title": "Suas atitudes são sustentáveis?",
     "description": "Descubra os impactos das suas ações para o planeta e formas de torna-las mais sustentáveis!",
-    "backgroundImage": "https://images.unsplash.com/photo-1464925257126-6450e871c667?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80",
+    "bg": "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     "questions": [
         {
           "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
@@ -49,12 +49,12 @@
     ],
     "theme": {
         "colors": {
-            "primary": "#8e6dfd",
-            "secondary": "#7c4dff",
+            "primary": "#00bcd4",
+            "secondary": "#aeea00",
             "mainBg": "#161a40",
             "contrastText": "#000",
-            "wrong": "#FF5722",
-            "success": "#4CAF50"
+            "wrong": "#bc0057",
+            "success": "#64dd17"
         },
         "borderRadius": "4px"
     }

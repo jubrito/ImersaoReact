@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import db from '../../../db.json';
 // Render das telas (da rota Quiz)
 import Lottie from 'react-lottie';
+import { motion } from 'framer-motion';
 import Widget from '../../components/Widget';
 import AlternativesForm from '../../components/AlternativesForm';
 import QuizBackground from '../../components/QuizBackground';
@@ -15,7 +16,7 @@ import animationData from './animations/loading.json';
 
 function LoadingWidget() {
   const [animationState, setAnimationState] = useState({
-    isStopped: true,
+    isStopped: false,
     isPaused: false,
   });
 
@@ -28,8 +29,8 @@ function LoadingWidget() {
   // }, []);
 
   const defaultOptions = {
-    loop: false, // false não roda em loop infinito
-    autoplay: false, // false não carrega a animação quando recarrega
+    loop: true, // false não roda em loop infinito
+    autoplay: true, // false não carrega a animação quando recarrega
     animationData,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
@@ -54,7 +55,18 @@ function LoadingWidget() {
 }
 function ResultWidget({ results }) {
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      // delay quanto tempo espera pra começar e duração em s
+      transition={{ delay: 0, duration: 0.5 }}
+      variants={{
+        // o elemento terá estados de animação
+        show: { opacity: 1, y: '0' },
+        hidden: { opacity: 0, y: '100%' },
+      }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Header>
         Tela de Resultado:
       </Widget.Header>
@@ -98,7 +110,6 @@ function QuestionWidget({
   totalQuestions,
   onSubmit,
   addResult,
-  points,
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = useState(false); // do formulário
@@ -107,10 +118,19 @@ function QuestionWidget({
   const hasAlternativeSelected = selectedAlternative !== undefined;
   const questionId = `question__${questionIndex}`;
 
-  const [currentPoints, setCurrentPoints] = useState(0);
-
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      // delay quanto tempo espera pra começar e duração em s
+      transition={{ delay: 0, duration: 0.5 }}
+      variants={{
+        // o elemento terá estados de animação
+        show: { opacity: 1, y: '0' },
+        hidden: { opacity: 0, y: '100%' },
+      }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Header>
         <BackLinkArrow href="/" />
         <h3>
@@ -194,7 +214,9 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({
+  externalQuestions, externalBg, projectName, gitHubUser,
+}) {
   // console.log(db.questions)
   const [screenState, setScreenState] = useState(screenStates.LOADING); // estado inicial
   const totalQuestions = externalQuestions.length;
@@ -247,7 +269,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
         )}
         {screenState == screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>
-      <GitHubCorner />
+      <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} />
     </QuizBackground>
   );
 }

@@ -5,13 +5,15 @@ import QuizScreen from '../../src/screens/Quiz';
 // Todas as urls externas do projeto (external em db.json) carregaremos
 
 // getServersideProps roda no servidor, monta no html c os dados que você retorna na chave props
-export default function QuizDaGaleraPage({ externalDB }) {
+export default function QuizDaGaleraPage({ externalDB, projectName, gitHubUser }) {
   return (
     <div>
       <ThemeProvider theme={externalDB.theme}>
         <QuizScreen
           externalQuestions={externalDB.questions}
           externalBg={externalDB.bg}
+          projectName={projectName}
+          gitHubUser={gitHubUser}
         />
       </ThemeProvider>
       {/* Dados do quiz
@@ -57,6 +59,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         externalDB,
+        projectName,
+        gitHubUser,
       }, // will be passed to the page component as props
     };
   } catch (err) {

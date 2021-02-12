@@ -48,7 +48,7 @@ export default function Home() {
   return (
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
-    <QuizBackground backgroundImage={db.backgroundImage}>
+    <QuizBackground backgroundImage={db.bg}>
       <Head>
         <title>{db.title}</title>
         <meta property="og:title" content={db.title} key="title" />
@@ -103,7 +103,7 @@ export default function Home() {
 
             <ul>
               {db.external.map((externalQuizLink) => {
-                const [projectName, githubUser] = externalQuizLink
+                const [projectName, gitHubUser] = externalQuizLink
                   .replace(/\//g, '')
                   .replace(/https?:/, '')
                   .replace('.vercel.app', '')
@@ -112,9 +112,9 @@ export default function Home() {
                   <li key={externalQuizLink}>
                     <Widget.Topic
                       as={Link} // Renderiza como componente link (para garantir SPA)
-                      href={`/quiz/${projectName}___${githubUser}`}
+                      href={`/quiz/${projectName}___${gitHubUser}`}
                     >
-                      {`${githubUser}/${projectName}`}
+                      {`${gitHubUser}/${projectName}`}
                     </Widget.Topic>
                   </li>
                 );
@@ -134,7 +134,7 @@ export default function Home() {
           animate="show"
         />
       </QuizContainer>
-      <GitHubCorner />
+      <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
     </QuizBackground>
   );
 }

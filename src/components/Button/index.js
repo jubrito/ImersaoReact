@@ -14,6 +14,7 @@ const Button = styled.button`
   text-transform: uppercase;
   outline: 0;
   transition: .3s;
+  margin-top: 25px;
   cursor: pointer;
   &:hover,
   &:focus {
