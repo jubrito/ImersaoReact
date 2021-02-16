@@ -1,3 +1,7 @@
+Você é um consumidor Engajado
+INDIFERENTE INICIANTE ENGAJADO CONSCIENTE
+Muito bem! Você já percebeu que o consumo consciente não é só uma maneira de economizar, reconhece que seus hábitos de consumo geram consequências não só para você e para seu bolso, mas para toda sociedade, o meio ambiente e as futuras gerações. Mas você pode agir ainda mais! Existem diversas maneiras de consumir de forma mais consciente e que talvez você ainda não conheça!
+
 # Example app with styled-components
 
 This example features how you use a different styling solution than [styled-jsx](https://github.com/zeit/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).

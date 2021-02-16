@@ -1,45 +1,278 @@
 {
     "title": "Suas atitudes são sustentáveis?",
-    "description": "Descubra os impactos das suas ações para o planeta e formas de torna-las mais sustentáveis!",
+    "description": "O objetivo desse teste é te ajudar a encontrar oportunidades para deixar suas ações mais sustentáveis! O primeiro passo é entender os impactos das suas ações e, ao mesmo tempo, descobrir novas alternativas. Mas responda com sinceridade, a melhor forma de evoluir é identificando oportunidades de melhoria :)",
     "bg": "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     "questions": [
         {
           "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
-          "title": "Qual a diferença entre = , == e === ?",
-          "description": "Pergunta fácil em!",
+          "title": "Plástico oxibiodegradável é melhor do que o plástico comum.",
+          "description": "Verdade ou mentira?",
           "answer": 1,
+          "explanation": [
+            "Plástico oxibiodegradável não é melhor do que o plástico comum. Na verdade, ele nada mais é do que o próprio plástico comum, com uma camada de aditivo que possibilita sua biodegradação mais rápida, mas ela traz alguns problemas:", 
+            "<li> O plástico quando se decompõe no meio ambiente se transforma em micropartículas conhecidas como microplásticos, que não são visíveis a olho nu e estão presentes mais de 200 mil de toneladas nos oceanos. :)</li>",
+            "<li> Caso um plástico com aditivo oxibiodegradável entre na cadeia de reciclagem do plástico comum, ele impacta de forma negativa o processo de reciclagem. Como não é possível distinguir a olho nu qual plástico possui aditivo, esse é um problema difícil de ser evitado.</li>"
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que você não sabia! — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/5-mitos-sobre-reciclagem-que-voce-nao-sabia/"
+
+          }],
           "alternatives": [
-            "São a mesma coisa",
-            "O = significa atribuição de valor. Já == verifica a igualdade do valor, enquanto === verifica valor e tipo de variável."
+            "Mito",
+            "Fato"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
+          "title": "No seu lar, existe a separação do lixo orgânico do reciclável?",
+          "description": "Pode falar a verdade",
+          "answer": 1,
+          "explanation": [
+            "No Brasil hoje apenas 3% dos materiais são de fato reciclados portanto, sendo que 30% poderia ser reaproveitado (ABRELPE). Das 180 mil toneladas de lixo produzidas nas grandes cidades todos os dias (IBGE), menos de 40% vão pra aterros adequados. Quando chega lá, o lixo é separado, e se a reciclagem já tiver sido feita antes, o trabalho dos catadores é facilitado. Quando separamos o lixo adequadamente, estamos dando os primeiros passos para sua destinação adequada.", 
+            "A grande maioria do lixo, cerca de 60%, no entanto, vai parar em lixões a céu aberto - o que é crime ambiental. O solo é contaminado pelo chorume, líquido tóxico que vem do lixo e o gás metano, liberado pela decomposição da matérica orgânica, contamina o ar. Nesses lixões, catadores e até crianças ficam expostos a todo tipo de doença.",
+            "E não é só isso: a separação correta contribui também para reduzir a contaminação do meio ambiente e para evitar a disseminação de doenças. A praticidade não compensa o esforço para reciclagem!"
+          ],
+          "source": [{
+            "title": "Lixo: a importância da separação do lixo caseiro — Câmara dos Deputados",
+            "url": "https://www.camara.leg.br/tv/195724-lixo-a-importancia-da-separacao-do-lixo-caseiro/#:~:text=Separar%20o%20lixo%20seco%20do,evitar%20a%20dissemina%C3%A7%C3%A3o%20de%20doen%C3%A7as"
+          }],
+          "alternatives": [
+            "Sim!",
+            "Não :("
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
+          "title": "Reciclável e reciclado é a mesma coisa.",
+          "description": "Fato ou mito?",
+          "answer": 0,
+          "explanation": [
+            "Materiais reciclados são aqueles que possuiam outros usos mas foram reaproveitados através do processo de reciclagem para se transformarem em novos produtos. Já os recicláveis são aqueles com potencial para reciclagem.", 
+            "Entretanto, nem tudo que é reciclável é, efetivamente, reciclado. Para que isso aconteça de fato, é preciso que diversos fatores ocorram, como o descarte adequado: só assim esse material chegará aos agentes responsáveis por lhes darem um destino correto."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que você não sabia! — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/5-mitos-sobre-reciclagem-que-voce-nao-sabia/"
+
+          }],
+          "alternatives": [
+            "Mentira",
+            "Verdade"
           ]
         },
         {
           "image": "https://media.giphy.com/media/Ie2Hs3A0uJRtK/giphy.gif",
-          "title": "Que tipos de dados são suportados em JavaScript?",
-          "description": "E agora? Você sabe?",
+          "title": "O peso do material influencia nele ser reciclável ou não?",
+          "description": "O peso ou o tamanho do material importa?",
+          "answer": 3,
+          "explanation": [
+            "Objetos muito leves muitas vezes são perdidos antes de chegar às cooperativas, além de apresentarem um baixo valor no mercado de reciclagem. Isso acontece com o Isopor e plástico metalizado, por exemplo. ", 
+            "Já o vidro apresenta dificuldade de reciclagem por ser muito pesado. Apesar de ser 100% reciclável, ele traz um desafio logístico, por ser pesado e cortante."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que você não sabia! — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/5-mitos-sobre-reciclagem-que-voce-nao-sabia/"
+
+          }],
+          "alternatives": [
+            "Não tem nada a ver, não influencia",
+            "Objetos pesados apresentam dificuldade de reciclagem",
+            "Objetos leves apresentam dificuldade de reciclagem",
+            "Tanto objetos muito leves quanto muito pesados são dificeis de serem reciclados"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Embalagem de pizza: coloca no reciclável ou não?",
+          "answer": 1,
+          "explanation": [
+            " O papelão, especialmente o ondulado, tem alta reciclabilidade, o que significa que este material vale muito para a indústria, mas as caixas de pizza muitas vezes não. Pizzas são super gordurosas e suas embalagens possuem restos de condimentos e... muito óleo. Durante a reciclagem, o papel descartado é misturado com água criando uma pasta que depois de seca vira papel de novo. Mas a água não se mistura com o óleo, lembra das aulas de química na escola? Então, toda a gordura que grudou na caixa de pizza impede a produção dessa pasta e, então, inutiliza ela pra reciclagem.",
+            "A maioria das cooperativas de reciclagem não coleta caixa de pizza usada, mas algumas sim. A gordura pode atrapalhar um pouco o processamento do material, mas não inviabiliza a reciclagem. Entretanto, só coloque no reciclagem souber que a cooperativa de reciclagem da sua cidade aceita caixa de pizza usada, caso contrário você pode separar a parte limpa e destinar apenas esta para a reciclagem. Outra opção é compostagem - processo em que materiais orgânicos, como restos de comida, podas de árvores e derivados de madeira, são transformados em adubo."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que você não sabia! — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/5-mitos-sobre-reciclagem-que-voce-nao-sabia/"
+
+          }],
+          "alternatives": [
+            "Se não houver mais pizza dentro, eu coloco pra reciclar!",
+            "Coloco no orgânico"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "O tamanho influencia na reciclagem do material?",
           "answer": 0,
+          "explanation": [
+            "Normalmente itens menores de 7 cm apresentam dificuldades de serem reciclados e podem ser facilmente perdidos na cadeia de reciclagem. Canudinhos são difíceis de serem reciclados por serem pequenos e leves. Por isso, existe uma grande chance de se perderem antes de chegarem às cooperativas de reciclagem."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que você não sabia! — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/5-mitos-sobre-reciclagem-que-voce-nao-sabia/"
+
+          }],
           "alternatives": [
-            "Number, String, Undefined, Null e Bool.",
-            "Int, String, Undefined, Null e Bool."
+            "Quanto menor, mais difícil de reciclar",
+            "Objetos grandes apresentam maior dificuldade de reciclagem",
+            "O tamanho não influencia!"
           ]
         },
         {
           "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
-          "title": "Qual a diferença de window e global?",
-          "answer": 1,
+          "title": "Como você lava a panela/frigideira depois de fritar uma refeição?",
+          "answer": 2,
+          "explanation": [
+            "É normal sobrar óleo de cozinha nas panelas depois de cozinhar e jogar esse resíduo na pia gera um impacto super negativo ao meio ambiente: estima-se que um litro de óleo contamine 25 mil litros de água.",
+            "Este óleo fica retido no encanamento da rede de esgoto em forma de gordura, podendo provocar entupimentos, dificultando a passagem a água de chuva e contribuindo para enchentes e disseminação de doenças. Para limpar o acumulo de gordura nos canos e estações de tratamento causado por esse discuido, são necessários produtos químicos altamente poluentes.",
+            "Além disso, ao chegar nas estações de tratamento, por apresentar um tratamento mais complexo e caro, o óleo acaba chegando aos manciais, fica na superfície de rios e lagos e impede a entrada de luz e oxigênio comprometendo o desenvolvimento de algas que estão na base da cadeia alimentar e que são responsáveis pela produção de oxigênio.",
+            "Os solos também são contaminados com o descarte de óleo. No solo ele é absorvido pelas plantas e também pode deixar a terra impermeável e impedir a absorção de água de chuva. Ao se decompor, o resíduo libera ainda gases de efeito estufa.",
+            "Então, passe um papel (de preferência usado) para retirar o óleo da frigideira, espero o óleo esfriar e então despeje todo o líquido em uma garrafa PET. Ele pode ser levado a um posto de coleta ou ser transformado em sabão caseiro."
+          ],
+          "source": [{
+            "title": "Recicla ou não recicla? O que fazer com a caixa de pizza usada? — Conexão Planeta",
+            "url": "https://conexaoplaneta.com.br/blog/reciclavel-ou-nao/#fechar"
+
+          },
+          {
+            "title": "O que fazer com o óleo de cozinha usado? — Ciclo Vivo",
+            "url": "https://ciclovivo.com.br/sem-categoria/o-que-fazer-com-o-oleo-de-cozinha-usado/"
+          },
+          {
+            "title": "Dica de Sustentabilidade: O que fazer com óleo de cozinha usado? — Envolverde Jornalismo",
+            "url": "https://envolverde.com.br/dica-de-sustentabilidade-o-que-fazer-com-oleo-de-cozinha-usado/"
+          }],
           "alternatives": [
-            "São a mesma coisa",
-            "window é o escopo global no browser, e global no node"
+            "A famosa combinação água + detergente",
+            "Se sobrar pouco, passo um papel para tirar a gordura e depois lavo",
+            "Removo o óleo que sobra com um papel, guardo em uma garrafa PET o restante e depois lavo"
           ]
         },
         {
           "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
-          "title": "Qual a forma antiga de trabalhar com AJAX na Web?",
+          "title": "Qual tipo de copo afeta mais o meio ambiente?",
           "answer": 1,
+          "explanation": [
+            "No Brasil, são consumidos cerca de 720 milhões de copos descartáveis por dia. Esses copos têm um potencial de reciclabilidade superbaixo, além de serem, na maioria das vezes, descartados incorretamente, não chegando a cadeia de reciclagem.",
+            "O vidro ocupa o segundo lugar. Por ser mais pesado, volumoso e ainda cortante, o vidro é menos interessante economicamente para os catadores que trabalham nas ruas. Vale a mesma lógica dos outros descartáveis: no geral, um produto retornável é preferível ao descartável por conta de fatores como durabilidade, transporte, embalagens e descarte depois do uso.",
+            "Por isso, leve o seu copo! Pode ser retrátil, canecas de plástico ou alumínio que você já tenha em casa. Na hora de comprar, prefira latinhas: além de ser o material mais reciclado do Brasil - 99% do que é produzido é reciclado - também evita machucar as pessoas com o vidro, principalmente os catadores."
+          ],
+          "source": [{
+            "title": "Saiba o que é e o que não é real quando o assunto é tomar pequenas atitudes para ajudar a salvar o planeta — ISTOÉ",
+            "url": "https://istoe.com.br/32395_MITO+OU+VERDADE+/"
+          },
+          {
+            "title": "Quer saber como curtir o carnaval de forma mais sustentável? — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/quer-saber-como-curtir-o-carnaval-de-forma-mais-sustentavel"
+          }],
           "alternatives": [
-            "JSONHttpRequest",
-            "XMLHttpRequest",
-            "fetch"
+            "Copo de vidro",
+            "Copo de plástico descartável",
+            "Latinhas de alumínio"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Isopor é um tipo de plástico que não pode ser reciclado por ser derivado do petróleo",
+          "answer": 1,
+          "explanation": [
+            "Sim, isopor é um plástico derivado do petróleo e 100% reciclávem. Esse mito sobre reciclagem é tão forte que o isopor quase não é lembrado na hora da separação. O que é péssimo para o planeta!",
+            "O material já foi ranqueado pela Plastic Pollution Coalition como um dos piores tipos de lixo existentes. Isso porque seu peso leve faz com que o material tenha pouco valor (assim como explicamos anteriormente).",
+            "Além de contaminar a fauna e a flora, o material é apontado, inclusive, como responsável por causar câncer em animais. Pelas suas dificuldades no processo de reciclagem, o melhor é reduzir seu consumo."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que precisamos desmentir! — BH Recicla",
+            "url": "https://bhrecicla.com.br/blog/5-mitos-sobre-reciclagem-que-precisamos-desmentir/"
+          }],
+          "alternatives": [
+            "Infelizmente é verdade",
+            "Pode ser reciclado sim"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Produtos só podem ser reciclados uma vez?",
+          "answer": 1,
+          "explanation": [
+            "Não! Alguns materiais podem ser reciclados infinitas vezes, como é o caso do vidro. Isso varia de acordo com a resistência e durabilidade de cada produto. Outro bom exemplo neste quesito são as latinhas de alumínio, cujo processo de reaproveitamento permite um retorno do item às prateleiras em cerca de 60 dias. Além disso, o material pode ser reaproveitado para outros fins.",
+            "Para se ter uma ideia, uma folha de papel, que é o produto que tem a vida mais curta dentro do processo, aguenta de cinco a sete reciclagens. É bastante coisa, não é mesmo? Já o plástico é considerado o mais complexo dentre os materiais pela variedade enorme de modelos que podem ser reciclados poucas ou muitas vezes, dependendo de sua composição. Ou seja: o esforço vale a pena sim."
+          ],
+          "source": [{
+            "title": "Conheça alguns mitos da sustentabilidade — Recicla Sampa",
+            "url": "https://www.reciclasampa.com.br/artigo/no-dia-da-mentira-conheca-alguns-mitos-da-sustentabilidade"
+          }],
+          "alternatives": [
+            "Sim, isso inclusive me desanima a reciclar, sinto que não vale o esforço",
+            "Mentira!"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "O chuveiro solar é a melhor opção, mas qual a pior?",
+          "answer": 1,
+          "explanation": [
+            "O ideal seria usar um sistema misto de energia solar e aquecimento complementar com fonte elétrica, que responde por apenas 20% do aquecimento, em média. 'A conversão para aquecimento solar custa em torno de R$ 5 mil, com sistema de circulação, que garante que a água saia quente imediatamente, e paga-se no prazo de 3 a 5 anos porém apresenta uma restrição: não funciona bem em prédios.'",
+            "Em segundo lugar, a melhor opção é o gás. “A queima do gás não deixa resíduos; o problema dele é não ser renovável”, diz Casado.",
+            "Já a pior opção é o chuveiro elétrico, presente em cerca de 90% das casas do Brasil. Se a demanda cresce, para atender ao horário de pico, entre 18h e 21h, é preciso aumentar a capacidade de fornecimento, causando impacto ambiental na região onde a hidrelétrica é construída."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que precisamos desmentir! — BH Recicla",
+            "url": "https://bhrecicla.com.br/blog/5-mitos-sobre-reciclagem-que-precisamos-desmentir/"
+          }],
+          "alternatives": [
+            "Chuveiro a gás",
+            "Chuveiro elétrico"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Abandonar o uso da sacolinha plástica no supermercado ajuda o meio-ambiente?",
+          "answer": 1,
+          "explanation": [
+            "Sim! Mas se abandonar a sacola plástica significar comprar um saco plástico para embalar o lixo, não adianta. Como as sacolas plásticas vêm de matérias-primas fósseis e não-renováveis e demoram séculos para se degradar na natureza, o ideal é usar sacolas retornáveis. Quando for necessário usar as descartáveis, o consumidor deve exigir que sejam resistentes para aguentar mais peso."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que precisamos desmentir! — BH Recicla",
+            "url": "https://bhrecicla.com.br/blog/5-mitos-sobre-reciclagem-que-precisamos-desmentir/"
+          }],
+          "alternatives": [
+            "Pegar sacolinhas do mercado evita a compra de mais sacolas de plástico para embalar o lixo",
+            "Ajuda sim"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Qual é o melhor para o meio ambiente?",
+          "answer": 1,
+          "explanation": [
+            "Primeiro, a gasolina é um recurso natural finito. Etanol é renovável. De acordo com os últimos trabalhos científicos, cada litro de etanol utilizado nos veículos libera, do ciclo completo, 0,26 quilos de gás carbônico. Já a gasolina, por litro de etanol equivalente, libera 2,28 quilos de gás carbônico.” Ou seja, a gasolina polui quase 10 vezes mais.",
+            "Além disso, se a safra de cana for bem manejada (sem queimadas, por exemplo), com a tecnologia agrícola adequada, o crescimento da próxima safra de cana absorve gás carbônico da atmosfera."
+          ],
+          "source": [{
+            "title": "5 mitos sobre reciclagem que precisamos desmentir! — BH Recicla",
+            "url": "https://bhrecicla.com.br/blog/5-mitos-sobre-reciclagem-que-precisamos-desmentir/"
+          }],
+          "alternatives": [
+            "Etanol",
+            "Gasolina"
+          ]
+        },
+        {
+          "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
+          "title": "Glitter prejudica o ambiente?",
+          "description": "Última pergunta!",
+          "answer": 1,
+          "explanation": [
+            "O glitter comum é feito de micropartículas de plástico, metalizadas com alumínio e tingidas e leva mais de mil anos para se decompor!",
+            "Como é quase impossível coletar microplástico, ele vai para a rede de esgoto e acaba contaminando oceanos. Por isso, prefira marcas de glitters ecológicos feitos com materiais biodegradáveis."
+          ],
+          "source": [{
+            "title": "Quer saber como curtir o carnaval de forma mais sustentável? — Nestlé",
+            "url": "https://www.nestle.com.br/proposito/repensar/quer-saber-como-curtir-o-carnaval-de-forma-mais-sustentavel"
+          }],
+          "alternatives": [
+            "Um pouquinho não faz mal",
+            "Prejudica muito"
           ]
         }
       ],
