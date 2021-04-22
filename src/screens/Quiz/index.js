@@ -8,6 +8,7 @@ import AlternativesForm from '../../components/AlternativesForm';
 import QuizBackground from '../../components/QuizBackground';
 import QuizLogo from '../../components/QuizLogo';
 import QuizContainer from '../../components/QuizContainer';
+import QuizExplanations from '../../components/QuizExplanations';
 import GitHubCorner from '../../components/GitHubCorner';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -62,7 +63,7 @@ function ResultWidget({ results }) {
       variants={{
         // o elemento terá estados de animação
         show: { opacity: 1, y: '0' },
-        hidden: { opacity: 0, y: '100%' },
+        hidden: { opacity: 0, y: '-100%' },
       }}
       initial="hidden"
       animate="show"
@@ -110,6 +111,8 @@ function QuestionWidget({
   totalQuestions,
   onSubmit,
   addResult,
+  handleExplanation,
+  hasAlreadyConfirmed
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = useState(false); // do formulário
@@ -126,7 +129,7 @@ function QuestionWidget({
       variants={{
         // o elemento terá estados de animação
         show: { opacity: 1, y: '0' },
-        hidden: { opacity: 0, y: '100%' },
+        hidden: { opacity: 0, y: '-100%' },
       }}
       initial="hidden"
       animate="show"
@@ -159,12 +162,14 @@ function QuestionWidget({
           onSubmit={(event) => {
             event.preventDefault(); // não atualiza a página
             setIsQuestionSubmited(true); // respondeu a pergunta
-            setTimeout(() => {
-              addResult(isCorrect);
-              onSubmit(); // dispara o onsubmit do form (o método handleQuizPageSubmit)
-              setIsQuestionSubmited(false);
-              setSelectedAlternative(undefined);
-            }, 3 * 1000);
+            if(hasAlreadyConfirmed){
+              setTimeout(() => {
+                addResult(isCorrect);
+                onSubmit(); // dispara o onsubmit do form (o método handleQuizPageSubmit)
+                setIsQuestionSubmited(false);
+                setSelectedAlternative(undefined);
+              }, 3 * 1000);
+            }
           }}
         >
           {/* semelhante as alternativas */}
@@ -178,7 +183,7 @@ function QuestionWidget({
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+                data-status={hasAlreadyConfirmed && alternativeStatus}
               >
                 <Input
                   // style={{ display: 'none '}}
@@ -188,6 +193,8 @@ function QuestionWidget({
                     setSelectedAlternative(alternativeIndex);
                   }}
                   type="radio"
+                  // se já clicou em confirmar (hasAlreadyConfirmed=true), o botão deve ser desabilitado
+                  disabled={hasAlreadyConfirmed}
                 />
                 {alternative}
               </Widget.Topic>
@@ -199,13 +206,55 @@ function QuestionWidget({
               {JSON.stringify(question, null, 4)}
             </pre> */}
 
-          <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlternativeSelected}>
-            Confirmar
-          </Button>
+            <Button type="button" onClick={() => handleExplanation()} disabled={!hasAlternativeSelected || hasAlreadyConfirmed}>
+              Confirmar
+            </Button>
+            <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlreadyConfirmed}>
+              Próxima Pergunta
+            </Button>
+          {/* {
+            hasAlreadyConfirmed ? 
+            <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlternativeSelected && !hasAlreadyConfirmed}>
+              Próxima Pergunta
+            </Button>
+            : 
+            <Button type="button" onClick={() => handleExplanation()}>
+              Confirmar
+            </Button>
+          } */}
           {/* <p>{`${selectedAlternative}`}</p> */}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
+  );
+}
+function QuestionExplanation({
+  explanations,
+  answer,
+  animate
+}) {
+
+  return (
+    <>
+        <QuizExplanations
+        as={motion.section}
+        // delay quanto tempo espera pra começar e duração em s
+        transition={{ delay: 0, duration: 0.5 }}
+        variants={{
+          // o elemento terá estados de animação
+          show: { opacity: 1, y: '-600px' },
+          hidden: { opacity: 0, y: '-100%' },
+        }}
+        initial="hidden"
+        animate={animate}>
+        <div>
+          <p><strong>Resposta correta:</strong> {answer}</p>
+          {explanations.map((explanation) => {
+           return <p>{explanation}</p>
+          })}
+        </div>
+        </QuizExplanations>
+        </>
   );
 }
 
@@ -223,8 +272,12 @@ export default function QuizPage({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
+  const explanations = question.explanation;
+  const answer = question.alternatives[question.answer];
   const [results, setResults] = useState([]);
   const bg = externalBg;
+  const [action, setAction] = useState("hide");
+  const [hasAlreadyConfirmed, setHasAlreadyConfirmed] = useState(false);
 
   function addResult(result) {
     setResults([
@@ -241,13 +294,26 @@ export default function QuizPage({
     }, 3 * 1000);
   }, []);
 
+  // Muda o estado de ação para "show", exibindo as explicações da pergunta
+  useEffect(() => {
+    if (hasAlreadyConfirmed){
+      setAction("show");
+    }
+  }, [hasAlreadyConfirmed]);
+
   function handleQuizSubmit() {
+    setAction("hide");
+    setHasAlreadyConfirmed(false);
     const nextQuestion = questionIndex + 1;
     if (nextQuestion < totalQuestions) {
       setCurrentQuestion(questionIndex + 1);
     } else {
       setScreenState(screenStates.RESULT);
     }
+  }
+  // chamada quando o usuário clica no botão "confirmar"
+  function handleExplanation() {
+    setHasAlreadyConfirmed(true);
   }
 
   return (
@@ -259,13 +325,22 @@ export default function QuizPage({
         {/* Se for loading renderiza o LoadingWidget */}
         {screenState == screenStates.LOADING && <LoadingWidget />}
         {screenState == screenStates.QUIZ && (
+          <>
           <QuestionWidget
             question={question}
             questionIndex={questionIndex}
             totalQuestions={totalQuestions}
             onSubmit={handleQuizSubmit}
+            handleExplanation={handleExplanation}
             addResult={addResult}
+            hasAlreadyConfirmed={hasAlreadyConfirmed}
           />
+          <QuestionExplanation
+            explanations={explanations}
+            animate={action}
+            answer={answer}>
+          </QuestionExplanation>
+          </>
         )}
         {screenState == screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>

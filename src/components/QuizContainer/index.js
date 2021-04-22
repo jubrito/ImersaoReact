@@ -6,10 +6,12 @@ const QuizContainer = styled.div`
   max-width: 380px;
   padding-top: 15px;
   margin: auto 10%;
+  position: relative;
   @media screen and (max-width: 500px) {
     margin: auto;
     padding: 15px;
   }
+  z-index: 10;
 `;
 
 export default QuizContainer;
