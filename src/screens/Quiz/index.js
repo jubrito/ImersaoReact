@@ -14,6 +14,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import animationData from './animations/loading.json';
+import parse from "html-react-parser";
+import LinkButton from '../../components/LinkButton';
 
 function LoadingWidget() {
   const [animationState, setAnimationState] = useState({
@@ -54,7 +56,19 @@ function LoadingWidget() {
     </Widget>
   );
 }
-function ResultWidget({ results }) {
+function ResultWidget({ results, totalQuestions, externalTextResults }) {
+  const points = results.filter((x) => x).length;
+  const [textResult, setTextResult] = useState("");
+  
+  useEffect(()=> {
+    if (points < 4) {
+     setTextResult(externalTextResults.bad);
+    } else if (points >= 5 ||points < 10) {
+      setTextResult(externalTextResults.regular);
+    } else {
+      setTextResult(externalTextResults.good);
+    }
+  }, [externalTextResults]);
   return (
     <Widget
       as={motion.section}
@@ -69,7 +83,7 @@ function ResultWidget({ results }) {
       animate="show"
     >
       <Widget.Header>
-        Tela de Resultado:
+        Resultado
       </Widget.Header>
 
       <Widget.Content>
@@ -83,11 +97,12 @@ function ResultWidget({ results }) {
             }
             return somatoriaAtual;
           }, 0)} */}
-          {results.filter((x) => x).length}
+          {points+"/"+totalQuestions}
           {' '}
           perguntas
         </p>
-        <ul>
+        <p>{parse(textResult)}</p>
+        {/* <ul>
           {results.map((result, index) => (
             <li key={`result__${index}`}>
               #
@@ -99,7 +114,8 @@ function ResultWidget({ results }) {
                 : 'Errou'}
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <LinkButton href="/" text="Refazer o teste"/>
       </Widget.Content>
     </Widget>
   );
@@ -120,7 +136,19 @@ function QuestionWidget({
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
   const questionId = `question__${questionIndex}`;
+  var [hasAlreadyConfirmedDelay, setHasAlreadyConfirmedDelay] = useState(false);
 
+  // delay de alguns segundos para o botão de próxima pergunta ser ativado
+  useEffect(()=> {
+    if (hasAlreadyConfirmed) {
+      setTimeout(()=> {
+          setHasAlreadyConfirmedDelay(true);
+        }, 2000)
+    } else {
+      setHasAlreadyConfirmedDelay(false);
+    }
+  }, [hasAlreadyConfirmed])
+    
   return (
     <Widget
       as={motion.section}
@@ -151,9 +179,9 @@ function QuestionWidget({
         src={question.image}
       />
       <Widget.Content>
-        <h2>
+        <h1>
           {question.title}
-        </h2>
+        </h1>
         <p>
           {question.description}
         </p>
@@ -205,23 +233,24 @@ function QuestionWidget({
             <pre>
               {JSON.stringify(question, null, 4)}
             </pre> */}
-
+            {/* <div className="mt-15">
+              <Button type="button" onClick={() => handleExplanation()} disabled={!hasAlternativeSelected || hasAlreadyConfirmed}>
+                Confirmar
+              </Button>
+              <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlreadyConfirmed}>
+                Próxima Pergunta
+              </Button>
+            </div> */}
+          {
+            hasAlreadyConfirmed ? 
+            <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlreadyConfirmedDelay}>
+              Próximo
+            </Button>
+            : 
             <Button type="button" onClick={() => handleExplanation()} disabled={!hasAlternativeSelected || hasAlreadyConfirmed}>
               Confirmar
             </Button>
-            <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlreadyConfirmed}>
-              Próxima Pergunta
-            </Button>
-          {/* {
-            hasAlreadyConfirmed ? 
-            <Button type="submit" onSubmit={() => handleQuizPageSubmit()} disabled={!hasAlternativeSelected && !hasAlreadyConfirmed}>
-              Próxima Pergunta
-            </Button>
-            : 
-            <Button type="button" onClick={() => handleExplanation()}>
-              Confirmar
-            </Button>
-          } */}
+          }
           {/* <p>{`${selectedAlternative}`}</p> */}
         </AlternativesForm>
       </Widget.Content>
@@ -230,6 +259,7 @@ function QuestionWidget({
 }
 function QuestionExplanation({
   explanations,
+  source,
   answer,
   animate
 }) {
@@ -242,16 +272,21 @@ function QuestionExplanation({
         transition={{ delay: 0, duration: 0.5 }}
         variants={{
           // o elemento terá estados de animação
-          show: { opacity: 1, y: '-600px' },
-          hidden: { opacity: 0, y: '-100%' },
+          show: { opacity: 1, x: '30%', y:'-50%', z:'0' },
+          hidden: { opacity: 0, x: '9%', y:'-50%', z:'0' },
         }}
         initial="hidden"
         animate={animate}>
         <div>
-          <p><strong>Resposta correta:</strong> {answer}</p>
+          <h2><strong>Resposta correta:</strong> {answer}</h2>
           {explanations.map((explanation) => {
-           return <p>{explanation}</p>
+           return <p>{parse(explanation)}</p>
           })}
+          <p className="source">Fonte: 
+          {source.map((src) => {
+           return <a href={src.url} target="_blank">{src.title}</a>
+          })}
+          </p>
         </div>
         </QuizExplanations>
         </>
@@ -264,7 +299,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 export default function QuizPage({
-  externalQuestions, externalBg, projectName, gitHubUser,
+  externalQuestions, externalBg, externalTextResults, projectName, gitHubUser,
 }) {
   // console.log(db.questions)
   const [screenState, setScreenState] = useState(screenStates.LOADING); // estado inicial
@@ -273,12 +308,12 @@ export default function QuizPage({
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
   const explanations = question.explanation;
+  const source = question.source;
   const answer = question.alternatives[question.answer];
   const [results, setResults] = useState([]);
   const bg = externalBg;
   const [action, setAction] = useState("hide");
   const [hasAlreadyConfirmed, setHasAlreadyConfirmed] = useState(false);
-
   function addResult(result) {
     setResults([
       ...results,
@@ -326,25 +361,29 @@ export default function QuizPage({
         {screenState == screenStates.LOADING && <LoadingWidget />}
         {screenState == screenStates.QUIZ && (
           <>
-          <QuestionWidget
-            question={question}
-            questionIndex={questionIndex}
-            totalQuestions={totalQuestions}
-            onSubmit={handleQuizSubmit}
-            handleExplanation={handleExplanation}
-            addResult={addResult}
-            hasAlreadyConfirmed={hasAlreadyConfirmed}
-          />
-          <QuestionExplanation
-            explanations={explanations}
-            animate={action}
-            answer={answer}>
-          </QuestionExplanation>
+          <div className="relative">
+            <QuestionWidget
+              question={question}
+              questionIndex={questionIndex}
+              totalQuestions={totalQuestions}
+              onSubmit={handleQuizSubmit}
+              handleExplanation={handleExplanation}
+              addResult={addResult}
+              hasAlreadyConfirmed={hasAlreadyConfirmed}
+            />
+            <QuestionExplanation
+              explanations={explanations}
+              source={source}
+              animate={action}
+              answer={answer}>
+            </QuestionExplanation>
+          </div>
           </>
         )}
-        {screenState == screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState == screenStates.RESULT && <ResultWidget results={results} totalQuestions={totalQuestions} externalTextResults={externalTextResults}/>}
       </QuizContainer>
-      <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} />
+      {/* <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} /> */}
+      <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
     </QuizBackground>
   );
 }

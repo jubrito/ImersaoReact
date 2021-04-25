@@ -6,6 +6,7 @@ const Widget = styled.div`
   background-color: #fff;
   border-radius: 4px;
   overflow: hidden;
+  z-index: 21;
 
   h1, h2, h3 {
     font-size: 16px;
@@ -33,6 +34,7 @@ Widget.Content = styled.div`
     list-style: none;
     padding: 0;
   }
+  position: relative;
 `;
 
 Widget.Header = styled.header`
@@ -50,7 +52,7 @@ Widget.Header = styled.header`
 Widget.Topic = styled.a`
   outline: 0;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.contrastText};
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => `${theme.colors.primary}40`};
   padding: 10px 15px;
   margin-bottom: 8px;

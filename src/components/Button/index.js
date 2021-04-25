@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.contrastText};
+  color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 0;
   width: 100%;
@@ -14,14 +14,14 @@ const Button = styled.button`
   text-transform: uppercase;
   outline: 0;
   transition: .3s;
-  margin-top: 25px;
+  margin-top: 10px;
   cursor: pointer;
   &:hover,
   &:focus {
     opacity: .5;
   }
   &:disabled {
-    background-color: #979797;
+    background-color:#646464;
     cursor: not-allowed;
   }
 `;

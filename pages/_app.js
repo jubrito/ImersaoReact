@@ -13,9 +13,36 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'Lato, sans-serif';
+    font-family: 'Ubuntu', sans-serif;
     // Branco no começo
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${({ theme }) => theme.colors.black};
+  }
+  .relative {
+    position: relative;
+  }
+  .mt-15 {
+    margin-top: 15px;
+  }
+  h2 {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px 10px;
+    font-size: 17px;
+  }
+  ul {
+    li {
+      margin-bottom: 10px;
+    }
+  }
+  .source {
+    font-style:italic;
+    font-size: 14px;
+    a {
+      padding-left: 5px;
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 `;
 
@@ -27,6 +54,8 @@ export default function App({ Component, pageProps }) {
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700" rel="stylesheet"/>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />

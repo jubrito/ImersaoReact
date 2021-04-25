@@ -16,9 +16,6 @@ const AlternativesForm = styled.form`
       opacity: 1;
     } 
   }
-  button {
-    margin-top: 24px;
-  }
 `;
 
 export default AlternativesForm;

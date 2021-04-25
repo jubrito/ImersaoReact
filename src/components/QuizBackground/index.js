@@ -11,11 +11,13 @@ import styled from 'styled-components';
 // `
 
 const QuizBackground = styled.div`
+// "bg": "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
   width: 100%;
-  background-size: cover;
-  background-position: top;
+  background-size: contain;
+  background-position: left;
   background-image: url(${({ backgroundImage }) => backgroundImage});
-  background-color: ${({ theme }) => theme.colors.mainBg};
+  background-color: ${({ theme }) => theme.colors.white};
+  background-repeat: no-repeat;
   /* padding-bottom: 50px; */
   min-height: 100vh;
   flex: 1;

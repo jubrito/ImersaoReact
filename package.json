@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "framer-motion": "^3.3.0",
+    "html-react-parser": "^1.2.6",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.0",
