@@ -12,6 +12,7 @@ export default function QuizDaGaleraPage({ externalDB, projectName, gitHubUser }
         <QuizScreen
           externalQuestions={externalDB.questions}
           externalBg={externalDB.bg}
+          externalBgMobile={externalDB.bg_mobile}
           projectName={projectName}
           gitHubUser={gitHubUser}
         />

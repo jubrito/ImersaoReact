@@ -1,48 +1,24 @@
 import styled from 'styled-components';
 
-const FooterWrapper = styled.footer`
-  background-color: #00000070;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  border-radius: 4px; 
-  img {
-    width: 58px;
-    margin-right: 23px;
+const FooterBox = styled.footer`
+  position: absolute;
+  bottom:-1px;
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-top-left-radius: ${({ theme }) => theme.borderRadius};
+  border-top-right-radius: ${({ theme }) => theme.borderRadius};
+  text-align: center;
+  z-index: 10;
+  p,a,a:hover {
+    color: ${({ theme }) => theme.colors.black};
   }
-  a {
-    color: white;
-    text-decoration: none;
-    transition: .3s;
-    &:hover,
-    &:focus {
-      opacity: .5;
-    }
-    span {
-      text-decoration: underline;
-    }
-  }
-  p {
-    color: white;
+  // Surface Duo
+  @media screen and (max-width: 540px) {
+    font-size: 12px;
+    padding: 0 5px;
   }
 `;
 
-export default function Footer(props) {
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FooterWrapper {...props}>
-      <a href="https://www.alura.com.br/">
-        <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
-      </a>
-      <p>
-        Orgulhosamente criado durante
-        {' '}
-        a
-        {' '}
-        <a href="https://www.alura.com.br/">
-          <span>Imersão React da Alura</span>
-        </a>
-      </p>
-    </FooterWrapper>
-  );
-}
+export default FooterBox;

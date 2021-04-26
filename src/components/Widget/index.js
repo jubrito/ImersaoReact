@@ -7,6 +7,8 @@ const Widget = styled.div`
   border-radius: 4px;
   overflow: hidden;
   z-index: 21;
+  min-height: 400px;
+  box-shadow: 0px 0px 12px rgb(20 0 0 / 30%);
 
   h1, h2, h3 {
     font-size: 16px;
@@ -19,6 +21,10 @@ const Widget = styled.div`
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
+  }
+  // Surface Duo
+  @media screen and (max-width: 540px) {
+    min-height: 500px;
   }
 `;
 Widget.Content = styled.div`
@@ -35,6 +41,10 @@ Widget.Content = styled.div`
     padding: 0;
   }
   position: relative;
+  // Ipad
+  @media screen and (max-width: 768px) {
+    padding: 22px;
+  }
 `;
 
 Widget.Header = styled.header`
@@ -46,6 +56,10 @@ Widget.Header = styled.header`
 
   * {
     margin: 0;
+  }
+  // Ipad
+  @media screen and (max-width: 768px) {
+    padding: 15px 32px;
   }
 `;
 

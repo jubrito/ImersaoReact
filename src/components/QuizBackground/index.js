@@ -12,6 +12,7 @@ import styled from 'styled-components';
 
 const QuizBackground = styled.div`
 // "bg": "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+  
   width: 100%;
   background-size: contain;
   background-position: left;
@@ -20,29 +21,22 @@ const QuizBackground = styled.div`
   background-repeat: no-repeat;
   /* padding-bottom: 50px; */
   min-height: 100vh;
+  position: relative;
   flex: 1;
-  @media screen and (max-width: 500px) {
-    background-image: none;
-    &:after {
-      content: "";
-      background-size: cover;
-    background-position: center;
-      background-image:
-        linear-gradient(transparent, ${({ theme }) => theme.colors.mainBg}),
-        url(${({ backgroundImage }) => backgroundImage});
-      display: block;
-      width: 100%;
-      height: 210px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1;
-    }
-    *:first-child {
-      position: relative;
-      z-index: 10;
-    }
+  @media screen and (max-width: 1082px) {
+  background-size: cover;
+  }
+  // Ipad Pro
+  @media screen and (max-width: 1024px) {
+    background-position: top;
+  }
+  // Ipad
+  @media screen and (max-width: 768px) {
+    background-image: url(${({ backgroundImageResponsive }) => backgroundImageResponsive});
+  }
+  // Iphone
+  @media screen and (max-width: 376px) {
+    min-height: 160vh;
   }
 `;
 

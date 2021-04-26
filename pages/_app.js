@@ -23,27 +23,25 @@ const GlobalStyle = createGlobalStyle`
   .mt-15 {
     margin-top: 15px;
   }
-  h2 {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: white;
-    width: fit-content;
-    margin: 0 auto;
-    padding: 5px 10px;
-    font-size: 17px;
-  }
   ul {
+    padding-left: 20px;
     li {
       margin-bottom: 10px;
+      padding-left: 0px;
     }
   }
   .source {
     font-style:italic;
-    font-size: 14px;
+    font-size: 13px;
     a {
       padding-left: 5px;
       color: ${({ theme }) => theme.colors.secondary};
     }
+    @media screen and (max-width: 1215px) {
+      font-size: 12px !important;
+    }
   }
+ 
 `;
 
 const { theme } = db;

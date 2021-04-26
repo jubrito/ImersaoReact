@@ -9,6 +9,7 @@ import db from '../db.json';
 import Widget from '../src/components/Widget';
 import Link from '../src/components/Link';
 import Footer from '../src/components/Footer';
+import Credits from '../src/components/Credits';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizContainer from '../src/components/QuizContainer';
@@ -49,7 +50,7 @@ export default function Home() {
   return (
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={db.bg} backgroundImageResponsive={db.bg_mobile}>
       <Head>
         <title>{db.title}</title>
         <meta property="og:title" content={db.title} key="title" />
@@ -88,7 +89,7 @@ export default function Home() {
           </Widget.Content>
 
         </Widget>
-        <Widget
+        {/* <Widget
           as={motion.section}
           transition={{ delay: 0.5, duration: 0.5 }}
           variants={{
@@ -99,7 +100,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
         >
-          {/* <Widget.Content>
+          <Widget.Content>
             <h1>Quizes da Galera</h1>
 
             <ul>
@@ -121,9 +122,9 @@ export default function Home() {
                 );
               })}
             </ul>
-          </Widget.Content> */}
-        </Widget>
-        <Footer
+          </Widget.Content>
+        </Widget> */}
+        <Credits
           as={motion.footer}
           transition={{ delay: 0.5, duration: 0.5 }}
           variants={{
@@ -136,6 +137,7 @@ export default function Home() {
         />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
+      <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </QuizBackground>
   );
 }

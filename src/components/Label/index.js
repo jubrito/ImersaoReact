@@ -10,6 +10,10 @@ const InputBase = styled.input`
     border-radius: ${({ theme }) => theme.borderRadius};
     outline: 0;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 1215px) {
+        font-size: 13px;
+    }
 `
 
 // Por padrão toda função recebe um objeto Input(props) e pela desestruturação podemos receber e alocar uma propriedade especifica: Input({ onChange})

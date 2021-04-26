@@ -14,8 +14,11 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import animationData from './animations/loading.json';
+import movingSeaData from './animations/wave.json';
 import parse from "html-react-parser";
 import LinkButton from '../../components/LinkButton';
+import Subtitle from '../../components/Subtitle';
+import Footer from '../../components/Footer';
 
 function LoadingWidget() {
   const [animationState, setAnimationState] = useState({
@@ -54,6 +57,37 @@ function LoadingWidget() {
       </Widget.Content>
 
     </Widget>
+  );
+}
+function SeaWidget() {
+  const [animationState, setAnimationState] = useState({
+    isStopped: false,
+    isPaused: false,
+  });
+
+  // Se tiver um botão por exemplo pra fazer a animação ocorrer teria que ser assim
+  // useEffect(() => {
+  //   setAnimationState({
+  //     ...animationState,
+  //     isStopped: !animationState.isStopped, // o contrário do que tiver
+  //   })
+  // }, []);
+
+  const defaultOptions = {
+    loop: true, // false não roda em loop infinito
+    autoplay: true, // false não carrega a animação quando recarrega
+    movingSeaData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
+  return (
+    <Lottie
+      options={defaultOptions}
+      height="400px"
+      width="400px"
+    />
   );
 }
 function ResultWidget({ results, totalQuestions, externalTextResults }) {
@@ -156,8 +190,8 @@ function QuestionWidget({
       transition={{ delay: 0, duration: 0.5 }}
       variants={{
         // o elemento terá estados de animação
-        show: { opacity: 1, y: '0' },
-        hidden: { opacity: 0, y: '-100%' },
+        show: { opacity: 1, y: '0', IDBIndex: 30 },
+        hidden: { opacity: 0, y: '-100%', IDBIndex: -1 },
       }}
       initial="hidden"
       animate="show"
@@ -272,13 +306,13 @@ function QuestionExplanation({
         transition={{ delay: 0, duration: 0.5 }}
         variants={{
           // o elemento terá estados de animação
-          show: { opacity: 1, x: '30%', y:'-50%', z:'0' },
-          hidden: { opacity: 0, x: '9%', y:'-50%', z:'0' },
+          show: { opacity: 1, x: '50%', y:'-50%', z:'0' },
+          hidden: { opacity: 0, x: '40%', y:'-50%', z:'100%' },
         }}
         initial="hidden"
         animate={animate}>
         <div>
-          <h2><strong>Resposta correta:</strong> {answer}</h2>
+          <Subtitle><strong>Resposta correta:</strong> {answer}</Subtitle>
           {explanations.map((explanation) => {
            return <p>{parse(explanation)}</p>
           })}
@@ -299,7 +333,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 export default function QuizPage({
-  externalQuestions, externalBg, externalTextResults, projectName, gitHubUser,
+  externalQuestions, externalBg, externalBgMobile, externalTextResults, projectName, gitHubUser,
 }) {
   // console.log(db.questions)
   const [screenState, setScreenState] = useState(screenStates.LOADING); // estado inicial
@@ -312,6 +346,7 @@ export default function QuizPage({
   const answer = question.alternatives[question.answer];
   const [results, setResults] = useState([]);
   const bg = externalBg;
+  const bg_mobile = externalBgMobile !== undefined ? externalBgMobile : externalBg;
   const [action, setAction] = useState("hide");
   const [hasAlreadyConfirmed, setHasAlreadyConfirmed] = useState(false);
   function addResult(result) {
@@ -349,12 +384,13 @@ export default function QuizPage({
   // chamada quando o usuário clica no botão "confirmar"
   function handleExplanation() {
     setHasAlreadyConfirmed(true);
+    
   }
 
   return (
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
-    <QuizBackground backgroundImage={bg}>
+    <QuizBackground backgroundImage={bg} backgroundImageResponsive={bg_mobile}>
       <QuizContainer>
         <QuizLogo />
         {/* Se for loading renderiza o LoadingWidget */}
@@ -384,6 +420,8 @@ export default function QuizPage({
       </QuizContainer>
       {/* <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} /> */}
       <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
+      {/* <Footer><SeaWidget/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
+      <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </QuizBackground>
   );
 }

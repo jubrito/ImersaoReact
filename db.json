@@ -1,13 +1,14 @@
 {
     "title": "Suas atitudes são sustentáveis?",
     "description": "O objetivo desse teste é te ajudar a encontrar oportunidades para deixar suas ações mais sustentáveis! <strong>O primeiro passo para transformar o mundo é entender os impactos das suas ações e, ao mesmo tempo, descobrir novas alternativas.</strong><p> Mas responda com sinceridade, a melhor forma de evoluir é identificando oportunidades de melhoria :)</p>",
-    "bg": "./sea2.jpg",
+    "bg": "./bg.jpg",
+    "bg_mobile": "./bg_mobile.jpg",
     "questions": [
         {
           "image": "https://media.giphy.com/media/3oEhmCVfXL9o75NcPe/giphy.gif",
           "title": "Plástico oxibiodegradável é melhor do que o plástico comum.",
           "description": "Verdade ou mentira?",
-          "answer": 1,
+          "answer": 0,
           "explanation": [
             "<h3><strong>Plástico oxibiodegradável não é melhor do que o plástico comum</strong></h3>",
             "Na verdade, ele nada mais é do que o próprio plástico comum, com uma camada de aditivo que possibilita sua biodegradação mais rápida, mas ela traz alguns problemas:", 
@@ -25,12 +26,13 @@
         },
         {
           "image": "https://media.giphy.com/media/2dPo5eE97Aw5q/giphy.gif",
-          "title": "No seu lar, existe a separação do lixo orgânico do reciclável?",
-          "description": "Pode falar a verdade",
+          "title": "'Não compensa separar o lixo orgânico do reciclável porque misturam depois'",
+          "description": "Você concorda com essa frase?",
           "answer": 1,
           "explanation": [
-            "No Brasil hoje apenas 3% dos materiais são de fato reciclados, sendo que 30% poderia ser reaproveitado (ABRELPE). Das 180 mil toneladas de lixo produzidas nas grandes cidades todos os dias (IBGE), <strong>menos de 40% vão pra aterros adequados</strong>. Quando chega lá, o lixo é separado, e se a reciclagem já tiver sido feita antes, o trabalho dos catadores é facilitado. <strong>Quando separamos o lixo adequadamente, estamos dando os primeiros passos para sua destinação adequada.</strong>", 
-            "A grande maioria do lixo, cerca de 60%, no entanto, vai parar em lixões a céu aberto - o que é crime ambiental. O solo é contaminado pelo chorume, líquido tóxico que vem do lixo e o gás metano, liberado pela decomposição da matérica orgânica, contamina o ar. Nesses lixões, catadores e até crianças ficam expostos a todo tipo de doença.",
+            "Os veículos de recolha seletiva são compartimentados e, por isso, os fluxos de resíduos não se contaminam entre si!",
+            "No Brasil hoje apenas 3% dos materiais são de fato reciclados, sendo que 30% poderia ser reaproveitado. Das 180 mil ton de lixo produzidas nas grandes cidades todos os dias, <strong>menos de 40% vão pra aterros adequados</strong>. Quando chega lá, o lixo é separado, e se a reciclagem já tiver sido feita antes, o trabalho dos catadores é facilitado. <strong>Quando separamos o lixo adequadamente, estamos dando os primeiros passos para sua destinação adequada.</strong>. ", 
+            "A maioria do lixo (60%), no entanto, vai parar em lixões a céu aberto - o que é crime ambiental. O solo é contaminado pelo chorume, líquido tóxico que vem do lixo e o gás metano, liberado pela decomposição da matérica orgânica, contamina o ar. Nesses lixões, catadores e até crianças ficam expostos a todo tipo de doença.",
             "E não é só isso: a separação correta contribui também <strong>reduz a contaminação do meio ambiente</strong> e para <strong>evitar a disseminação de doenças</strong>. <i>A praticidade não compensa o esforço para reciclagem!</i>"
           ],
           "source": [{
@@ -38,8 +40,8 @@
             "url": "https://www.camara.leg.br/tv/195724-lixo-a-importancia-da-separacao-do-lixo-caseiro/#:~:text=Separar%20o%20lixo%20seco%20do,evitar%20a%20dissemina%C3%A7%C3%A3o%20de%20doen%C3%A7as"
           }],
           "alternatives": [
-            "Sim! :)",
-            "Não :("
+            "Verdade",
+            "Mentira"
           ]
         },
         {
@@ -95,8 +97,9 @@
 
           }],
           "alternatives": [
-            "Se não houver mais pizza dentro, eu coloco pra reciclar!",
-            "Coloco no orgânico"
+            "Se não houver mais pizza dentro, coloca pra reciclar!",
+            "Coloca no orgânico",
+            "Tanto faz"
           ]
         },
         {
@@ -114,7 +117,7 @@
           "alternatives": [
             "Quanto menor, mais difícil de reciclar",
             "Objetos grandes apresentam maior dificuldade de reciclagem",
-            "O tamanho não influencia!"
+            "O tamanho não influencia! rs"
           ]
         },
         {
@@ -122,8 +125,7 @@
           "title": "Como você lava a panela/frigideira depois de fritar uma refeição?",
           "answer": 2,
           "explanation": [
-            "Jogar restos de óleo de cozinha na pia gera um impacto super negativo ao meio ambiente: <strong>1l de óleo contamina 25 mil l de água.</strong>",
-            "Este óleo fica retido no encanamento da rede de esgoto, provocando entupimentos, dificultando a passagem da água da chuva e contribuindo para enchentes e disseminação de doenças. Para limpar o acumulo de gordura causado por esse discuido, são necessários produtos altamente poluentes.",
+            "Jogar restos de óleo de cozinha na pia gera um impacto super negativo ao meio ambiente: <strong>1l de óleo contamina 25 mil l de água.</strong> Este óleo fica retido no encanamento da rede de esgoto, provocando entupimentos, dificultando a passagem da água da chuva e contribuindo para enchentes e disseminação de doenças. Para limpar o acumulo de gordura causado por esse discuido, são necessários produtos altamente poluentes.",
             "Além disso, ao chegar nas estações de tratamento, pelo tratamento ser complexo e caro, <strong>o óleo chega aos rios e lagos</strong> e impede a entrada de luz e O2 comprometendo algas produtoras de oxigênio. Os <strong>solos também são contaminados:</strong> O óleo é absorvido pelas plantas e impede a absorção de água de chuva. Ao se decompor, o resíduo libera ainda gases de efeito estufa.",
             "Então, <strong>passe um pequeno pedaço de papel (de preferência usado) para retirar o excesso de óleo da frigideira antes de lavá-la. Se sobrar muito óleo espere que esfriar e despeje todo o líquido em uma garrafa PET.</strong> Ele pode ser levado a um posto de coleta ou ser transformado em sabão caseiro."
           ],

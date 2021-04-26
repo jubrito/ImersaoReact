@@ -39,6 +39,10 @@ const QuizLogo = styled(Logo)`
   @media screen and (max-width: 500px) {
     margin: 0;
   }
+  // Ipad
+  @media screen and (max-width: 768px) {
+    height: 40px;
+  }
 `;
 
 export default QuizLogo;
