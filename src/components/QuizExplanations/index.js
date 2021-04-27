@@ -16,19 +16,19 @@ const QuizExplanations = styled.div`
   color: ${({ theme }) => theme.colors.black};
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
   border: 0;
-  right: -430px;
+  left: 100%;
   z-index: 10;
   background-color: rgb(254, 254, 254, 0.3);
   box-shadow: -13px -3px 12px rgb(20 0 0 / 30%);
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 10px 20px 0px 20px;
   width: 700px;
+  transform:translateX(15%) translateY(-50%) translateZ(0px);
 
   @media screen and (max-width: 1400px) {
-  width: 540px;
-    transform: translateX(30%) translateY(-50%) translateZ(0px) !important;
+    width: 590px;
   } 
   @media screen and (max-width: 1215px) {
     width: 500px;
@@ -38,42 +38,48 @@ const QuizExplanations = styled.div`
   } 
   // Ipad Pro
   @media screen and (max-width: 1024px) {
-    background-color: rgb(254,254,254,0.5);
+    background-color: rgb(254,254,254,0.7);
+    transform:translateX(14%) translateY(-100%) translateZ(0px);
   }
   // Ipad
   @media screen and (max-width: 768px) {
-    transform: translateX(-69%) translateY(0) translateZ(0px) !important;
-    bottom: -105%;
-    top: unset;
+    background-color: rgb(254,254,254,0.5);
+    transform: translateX(-100%) translateY(65%) translateZ(0px);
+    /* bottom: -105%; */
+    /* left: 0; */
+    /* top: unset; */
     width: 100%;
     box-shadow: 0px -5px 12px rgb(20 0 0 / 30%);
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
   }
   // Surface Duo
   @media screen and (max-width: 540px) {
-    transform: translateX(-95%) translateY(30%) translateZ(0px) !important;
+    /* transform: translateX(-95%) translateY(30%) translateZ(0px) !important; */
     min-height: 670px;
+    /* background-size: cover; */
+    /* background-size: 100%; */
+    /* height: 100vh; */
+    position: relative;
     p, h2 {
       font-size: 13px;
     }
   }
   // Iphone Plus
   @media screen and (max-width: 415px) {
-    transform: translateX(-122%) translateY(23%) translateZ(0px) !important;
+    /* transform: translateX(-122%) translateY(23%) translateZ(0px) !important; */
     box-shadow: 0px 0px 12px rgb(20 0 0 / 30%);
     height: max-content;
   }
   // Iphone
   @media screen and (max-width: 376px) {
-    transform: translateX(-135%) translateY(29%) translateZ(0px) !important;
   }
   // Moto G4 / Galaxy S5
   @media screen and (max-width: 361px) {
-    transform: translateX(-140%) translateY(27%) translateZ(0px) !important;
+    min-height: 600px;
   }
-  // Iphone SE
-  @media screen and (max-width: 321px) {
-    transform: translateX(-158%) translateY(25%) translateZ(0px) !important;
+  // Galaxy Fold
+  @media screen and (max-width: 280px) {
+    min-height: 640px;
   }
   /* @media screen and (max-width: 500px) {
     margin: auto;

@@ -129,8 +129,8 @@ export default function Home() {
           transition={{ delay: 0.5, duration: 0.5 }}
           variants={{
             // o elemento terá estados de animação
-            show: { opacity: 1, y: '0' },
-            hidden: { opacity: 0, y: '100%' },
+            show: { opacity: 1, y: '0', display: 'block' },
+            hidden: { opacity: 0, y: '100%', display: 'none' },
           }}
           initial="hidden"
           animate="show"

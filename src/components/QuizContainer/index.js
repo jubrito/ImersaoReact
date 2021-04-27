@@ -20,38 +20,37 @@ const QuizContainer = styled.div`
   // Ipad Pro
   @media screen and (max-width: 1024px) {
     margin: auto 7%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) !important;
+    transform: translateY(80%);
   }
   // Ipad
   @media screen and (max-width: 768px) {
-    transform: translateY(-90%) translateX(3%) !important;
+    margin: 0 auto;
     max-width: 620px;
+    transform: translateY(10%);
   }
   // Surface Duo
   @media screen and (max-width: 540px) {
-    transform: translateY(-60%) translateX(0%) !important;
     max-width: 450px;
+    transform: translateY(6%);
   }
   // Iphone Plus
   @media screen and (max-width: 415px) {
-    max-width: 360px;
-    transform: translateX(0) translateY(-60%) !important;
+    /* transform: translateX(0) translateY(-60%) !important; */
     max-width: 85%;
   }
   // Iphone
   @media screen and (max-width: 376px) {
-    transform: translateX(0) translateY(-90%) !important;
+    /* transform: translateX(0) translateY(-90%) !important; */
+    transform: translateY(0%);
   }
   // Moto G4 / Galaxy S5
   @media screen and (max-width: 361px) {
-    transform: translateX(0) translateY(-85%) !important;
+    /* transform: translateX(0) translateY(-85%) !important; */
   }
   // Iphone SE
   @media screen and (max-width: 321px) {
-    margin: auto -1%;
-    transform: translateX(10%) translateY(-75%) !important;
+    /* margin: auto -1%; */
+    /* transform: translateX(10%) translateY(-75%) !important; */
   }
   z-index: 10;
 `;

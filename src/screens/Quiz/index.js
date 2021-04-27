@@ -19,6 +19,8 @@ import parse from "html-react-parser";
 import LinkButton from '../../components/LinkButton';
 import Subtitle from '../../components/Subtitle';
 import Footer from '../../components/Footer';
+import {BreakpointProvider} from '../../components/BreakpointProvider';
+import {useBreakpoint} from '../../components/BreakpointProvider'
 
 function LoadingWidget() {
   const [animationState, setAnimationState] = useState({
@@ -182,6 +184,84 @@ function QuestionWidget({
       setHasAlreadyConfirmedDelay(false);
     }
   }, [hasAlreadyConfirmed])
+
+  const [translateShow, setTranslateShow] = useState({ x: '', y:''})  
+  const [translateHide, setTranslateHide] = useState({ x: '', y:''})  
+  const breakpoints = useBreakpoint();
+  useEffect(() => {
+    var large_screen, medium_screen, ipad_pro_screen, ipad_screen, surface_duo_screen, iphone_plus_screen, iphone_screen, motog4_screen, iphonese_screen;
+    const matchingList2 = Object.keys(breakpoints).map(media => {
+      var breakpoint_media = breakpoints[media];
+      switch (media) {
+        case 'iphonese_screen':
+          iphonese_screen = breakpoint_media;
+          // console.log(iphonese_screen)
+        break;
+        case 'motog4_screen':
+          motog4_screen = breakpoint_media;
+        break;
+        case 'iphone_screen':
+          iphone_screen = breakpoint_media;
+        break;
+        case 'iphone_plus_screen':
+          iphone_plus_screen = breakpoint_media;
+        break;
+        case 'surface_duo_screen':
+          surface_duo_screen = breakpoint_media;
+        break;
+        case 'ipad_screen':
+          ipad_screen = breakpoint_media;
+        break;
+        case 'ipad_pro_screen':
+          ipad_pro_screen = breakpoint_media;
+        break;
+        case 'medium_screen':
+          medium_screen = breakpoint_media;
+        break;
+        case 'large_screen':
+          large_screen = breakpoint_media;
+        break;
+      }
+    })
+  }, []);
+  useEffect(() => {
+      // console.log(matchingList)
+    console.log(window.innerWidth)
+    if (window.innerWidth >= 322 && window.innerWidth < 361) {
+      setTranslateShow({x: '0%', y: '8%', z: '0px'});
+      setTranslateHide({x: '0%', y: '8%', z: '0px'});
+      console.log("motog4_screen")
+
+    } else if (window.innerWidth >= 361 && window.innerWidth < 376) {
+      setTranslateShow({x: '0%', y: '12%', z: '0px'});
+      setTranslateHide({x: '0%', y: '12%', z: '0px'});
+      console.log("iphone_screen")
+
+    } else if (window.innerWidth >= 376 && window.innerWidth < 769) {
+      setTranslateShow({x: '0%', y: '0%', z: '0px'});
+      setTranslateHide({x: '0%', y: '0%', z: '0px'});
+      console.log("ipad_screen")
+
+    } else if (window.innerWidth >= 769 && window.innerWidth < 1025) {
+      setTranslateShow({x: '0%', y: '-50%', z: '0px'});
+      setTranslateHide({x: '0%', y: '-50%', z: '0px'});
+      console.log("ipad_pro_screen")
+
+    } else if (window.innerWidth >=1025  && window.innerWidth <1215){
+      // setTranslateShow({x: '27%', y: '-50%', z: '0px'});
+      // setTranslateHide({x: '26%', y: '-50%', z: '0px'});
+      // console.log("medium_screen")
+    
+    } else if (window.innerWidth >= 1215 && window.innerWidth < 1400){
+      // setTranslateShow({x: '14%', y: '-50%'});
+      // setTranslateHide({x: '10%', y: '-50%'});
+      // console.log("large_screen")
+    } else {
+      setTranslateShow({x: '0', y: '0'});
+      setTranslateHide({x: '0', y: '-100%'});
+      console.log("default")
+    }
+  }, [window.innerWidth])
     
   return (
     <Widget
@@ -190,8 +270,8 @@ function QuestionWidget({
       transition={{ delay: 0, duration: 0.5 }}
       variants={{
         // o elemento terá estados de animação
-        show: { opacity: 1, y: '0', IDBIndex: 30 },
-        hidden: { opacity: 0, y: '-100%', IDBIndex: -1 },
+        show: { opacity: 1, x: translateShow.x, y: translateShow.y, IDBIndex: 30 },
+        hidden: { opacity: 0, x: translateHide.x, y: translateHide.y, IDBIndex: -1 },
       }}
       initial="hidden"
       animate="show"
@@ -295,9 +375,103 @@ function QuestionExplanation({
   explanations,
   source,
   answer,
-  animate
+  animate,
+  data_screen
 }) {
 
+  const [translateShow, setTranslateShow] = useState({ x: '', y:''})  
+  const [translateHide, setTranslateHide] = useState({ x: '', y:''})  
+  const breakpoints = useBreakpoint();
+  useEffect(() => {
+    var large_screen, medium_screen, ipad_pro_screen, ipad_screen, surface_duo_screen, iphone_plus_screen, iphone_screen, motog4_screen, iphonese_screen;
+    const matchingList2 = Object.keys(breakpoints).map(media => {
+      var breakpoint_media = breakpoints[media];
+      switch (media) {
+        case 'iphonese_screen':
+          iphonese_screen = breakpoint_media;
+          // console.log(iphonese_screen)
+        break;
+        case 'motog4_screen':
+          motog4_screen = breakpoint_media;
+        break;
+        case 'iphone_screen':
+          iphone_screen = breakpoint_media;
+        break;
+        case 'iphone_plus_screen':
+          iphone_plus_screen = breakpoint_media;
+        break;
+        case 'surface_duo_screen':
+          surface_duo_screen = breakpoint_media;
+        break;
+        case 'ipad_screen':
+          ipad_screen = breakpoint_media;
+        break;
+        case 'ipad_pro_screen':
+          ipad_pro_screen = breakpoint_media;
+        break;
+        case 'medium_screen':
+          medium_screen = breakpoint_media;
+        break;
+        case 'large_screen':
+          large_screen = breakpoint_media;
+        break;
+      }
+    })
+  }, []);
+  useEffect(() => {
+      // console.log(matchingList)
+    console.log(window.innerWidth)
+    
+    if (window.innerWidth < 322) {
+      setTranslateShow({x: '-100%', y: '0%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '0%', z: '0px'});
+      console.log("iphonese_screen")
+
+    } else if (window.innerWidth >= 322 && window.innerWidth < 361) {
+      setTranslateShow({x: '-100%', y: '8%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '8%', z: '0px'});
+      console.log("motog4_screen")
+
+    } else if (window.innerWidth >= 361 && window.innerWidth < 376) {
+      setTranslateShow({x: '-100%', y: '12%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '12%', z: '0px'});
+      console.log("iphone_screen")
+
+    } else if (window.innerWidth >= 376 && window.innerWidth < 415) {
+      setTranslateShow({x: '-100%', y: '1%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '1%', z: '0px'});
+      console.log("iphone_plus_screen")
+
+    } else if (window.innerWidth >= 415 && window.innerWidth < 541) {
+      setTranslateShow({x: '-100%', y: '0%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '0%', z: '0px'});
+      console.log("surface_duo_screen")
+
+    } else if (window.innerWidth >= 541 && window.innerWidth < 769) {
+      setTranslateShow({x: '-100%', y: '65%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '65%', z: '0px'});
+      console.log("ipad_screen")
+
+    } else if (window.innerWidth >= 769 && window.innerWidth < 1025) {
+      setTranslateShow({x: '14%', y: '-100%', z: '0px'});
+      setTranslateHide({x: '14%', y: '-100%', z: '0px'});
+      console.log("ipad_pro_screen")
+
+    } else if (window.innerWidth >=1025  && window.innerWidth <1215){
+      setTranslateShow({x: '27%', y: '-50%', z: '0px'});
+      setTranslateHide({x: '27%', y: '-50%', z: '0px'});
+      console.log("medium_screen")
+    
+    } else if (window.innerWidth >= 1215 && window.innerWidth < 1400){
+      setTranslateShow({x: '14%', y: '-50%'});
+      setTranslateHide({x: '14%', y: '-50%'});
+      console.log("large_screen")
+    } else {
+      setTranslateShow({x: '15%', y: '-50%'});
+      setTranslateHide({x: '15%', y: '-50%'});
+      console.log("default")
+    }
+  }, [window.innerWidth])
   return (
     <>
         <QuizExplanations
@@ -306,8 +480,8 @@ function QuestionExplanation({
         transition={{ delay: 0, duration: 0.5 }}
         variants={{
           // o elemento terá estados de animação
-          show: { opacity: 1, x: '50%', y:'-50%', z:'0' },
-          hidden: { opacity: 0, x: '40%', y:'-50%', z:'100%' },
+          show: { opacity: 1, x: translateShow.x , y: translateShow.y, z:'0' },
+          hidden: { opacity: 0, x: translateHide.x, y:translateHide.y, z:'100%' },
         }}
         initial="hidden"
         animate={animate}>
@@ -356,6 +530,19 @@ export default function QuizPage({
     ]);
   }
 
+  const queries = {
+    large_screen: '(max-width: 1403px)',
+    medium_screen: '(max-width: 1216px)',
+    ipad_pro_screen: '(max-width: 1025px)',
+    ipad_screen: '(max-width: 769px)',
+    surface_duo_screen: '(max-width: 541px)',
+    iphone_plus_screen: '(max-width: 416px)',
+    iphone_screen: '(max-width: 376px)',
+    motog4_screen: '(max-width: 361px)',
+    iphonese_screen: '(max-width: 321px)'
+  }
+
+  
   // nasce === didMount (componente é montado)
   // callbackfunction
   useEffect(() => {
@@ -390,6 +577,8 @@ export default function QuizPage({
   return (
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
+    <>
+    <BreakpointProvider queries={queries}>
     <QuizBackground backgroundImage={bg} backgroundImageResponsive={bg_mobile}>
       <QuizContainer>
         <QuizLogo />
@@ -407,12 +596,12 @@ export default function QuizPage({
               addResult={addResult}
               hasAlreadyConfirmed={hasAlreadyConfirmed}
             />
-            <QuestionExplanation
-              explanations={explanations}
-              source={source}
-              animate={action}
-              answer={answer}>
-            </QuestionExplanation>
+              <QuestionExplanation
+                explanations={explanations}
+                source={source}
+                animate={action}
+                answer={answer}>
+              </QuestionExplanation>
           </div>
           </>
         )}
@@ -421,7 +610,9 @@ export default function QuizPage({
       {/* <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} /> */}
       <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
       {/* <Footer><SeaWidget/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
-      <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </QuizBackground>
+    <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
+    </BreakpointProvider>
+    </>
   );
 }
