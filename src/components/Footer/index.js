@@ -16,9 +16,52 @@ const FooterBox = styled.footer`
   }
   p {
     margin: 5px;
-    pading: 5px;
+    padding: 5px;
+    font-size: 10px;
   }
-  // Ipad
+  div {
+    left: 0px;
+    // Ipad Pro
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      height: 350px !important;
+    }
+    // Ipad
+    @media screen and (min-width: 521px) and (max-width: 768px) {
+      height: 50px !important;
+      bottom: 30px !important;
+    }
+    // Surface Duo
+    @media screen and (min-width: 411px) and (max-width: 520px) {
+      bottom: 28px !important;
+      height: 120px !important;
+    }
+    /* // Iphone X
+    @media screen and (min-width: 376px) and (max-width: 410px) {
+      bottom: 42px !important;
+      height: 360px !important;
+    } */
+    // Motog4
+    @media screen and (min-width: 376px) and (max-width: 410px) {
+      bottom: 42px !important;
+      height: 170px !important;
+    }
+    // Iphone
+    @media screen and (min-width: 361px) and (max-width: 375px) {
+      bottom: 42px !important;
+      height: 200px !important;
+    }
+    // Iphone SE
+    @media screen and (min-width: 280px) and (max-width: 320px) {
+      bottom: 42px !important;
+      height: 100px !important;
+    }
+    // Galaxy fold & motog4
+    @media screen and (min-width: 280px) and (max-width: 319px) {
+      bottom: 42px !important;
+      height: 140px !important;
+    }
+  }
+  // Ipad Pro
   @media screen and (max-width: 1024px) {
     bottom: -10vh;
   }

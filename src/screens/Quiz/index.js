@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import db from '../../../db.json';
 // Render das telas (da rota Quiz)
 import Lottie from 'react-lottie';
@@ -137,7 +137,7 @@ function RecyclingBinWidget() {
         position: 'absolute',
         bottom: 22,
         right: 0,
-        zIndex: 9
+        zIndex: 9,
       }}
     />
   );
@@ -429,7 +429,8 @@ function QuestionExplanation({
   source,
   answer,
   animate,
-  data_screen
+  data_screen,
+  myRef
 }) {
 
   const [translateShow, setTranslateShow] = useState({ x: '', y:''})  
@@ -501,8 +502,8 @@ function QuestionExplanation({
       console.log("surface_duo_screen")
 
     } else if (window.innerWidth >= 541 && window.innerWidth < 769) {
-      setTranslateShow({x: '-100%', y: '65%', z: '0px'});
-      setTranslateHide({x: '-100%', y: '65%', z: '0px'});
+      setTranslateShow({x: '-100%', y: '56%', z: '0px'});
+      setTranslateHide({x: '-100%', y: '56%', z: '0px'});
       console.log("ipad_screen")
 
     } else if (window.innerWidth >= 769 && window.innerWidth < 1025) {
@@ -524,7 +525,7 @@ function QuestionExplanation({
       setTranslateHide({x: '15%', y: '-50%'});
       console.log("default")
     }
-  }, [window.innerWidth])
+  }, [window.innerWidth]);
   return (
     <>
         <QuizExplanations
@@ -537,8 +538,9 @@ function QuestionExplanation({
           hidden: { opacity: 0, x: translateHide.x, y:translateHide.y, z:'100%' },
         }}
         initial="hidden"
-        animate={animate}>
-        <div>
+        animate={animate}
+        >
+        <div ref={myRef}>
           <Subtitle><strong>Resposta correta:</strong> {answer}</Subtitle>
           {explanations.map((explanation) => {
            return <p>{parse(explanation)}</p>
@@ -594,7 +596,8 @@ export default function QuizPage({
     motog4_screen: '(max-width: 361px)',
     iphonese_screen: '(max-width: 321px)'
   }
-
+  const myRef = useRef(null);
+  const executeScroll = () => myRef.current.scrollIntoView();
   
   // nasce === didMount (componente é montado)
   // callbackfunction
@@ -608,6 +611,7 @@ export default function QuizPage({
   useEffect(() => {
     if (hasAlreadyConfirmed){
       setAction("show");
+      executeScroll;
     }
   }, [hasAlreadyConfirmed]);
 

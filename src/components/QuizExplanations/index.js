@@ -78,6 +78,12 @@ const QuizExplanations = styled.div`
   @media screen and (max-width: 361px) {
     min-height: 600px;
   }
+  // Iphone SE
+  @media screen and (max-width: 321px) {
+    p {
+      font-size: 11px;
+    }
+  }
   // Galaxy Fold
   @media screen and (max-width: 280px) {
     min-height: 640px;
