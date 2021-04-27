@@ -280,12 +280,14 @@
     ],
     "theme": {
         "colors": {
-            "primary": "#00bcd4",
-            "secondary": "#005467",
+            "primary": "#004867",
+            "secondary": "#33bef0",
+            "tertiary": "#1f32a4",
+            "quaternary": "#7396fd",
             "mainBg": "#161a40",
             "white": "#fff",
             "black": "#000",
-            "wrong": "#bc0057",
+            "wrong": "#ca004ff5",
             "success": "#64dd17",
             "sand": "#e7e5e1"
         },

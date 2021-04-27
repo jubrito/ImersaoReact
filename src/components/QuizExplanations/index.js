@@ -19,6 +19,7 @@ const QuizExplanations = styled.div`
   /* transform: translateY(-50%); */
   border: 0;
   left: 100%;
+  font-size: 14px;
   z-index: 10;
   background-color: rgb(254, 254, 254, 0.3);
   box-shadow: -13px -3px 12px rgb(20 0 0 / 30%);

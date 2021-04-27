@@ -4,9 +4,7 @@ import styled from 'styled-components';
 const InputBase = styled.input`
     padding: 15px;
     font-size: size 14px;
-    border: 1px solid ${({ theme }) => theme.colors.primary};
-    /* background-color: ${({ theme }) => theme.colors.black}; */
-    background-color: #e2e2e24a;
+    border: 1px solid ${({ theme }) => theme.colors.quaternary};
     border-radius: ${({ theme }) => theme.borderRadius};
     outline: 0;
     margin-bottom: 25px;

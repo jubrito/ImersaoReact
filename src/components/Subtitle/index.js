@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Subtitle = styled.h2`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   width: fit-content;
   margin: 0 auto;

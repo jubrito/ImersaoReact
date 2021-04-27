@@ -18,9 +18,9 @@ const InputBase = styled.input`
 // Algumas variáveis foram declaradas diretamente no parâmetro para serem manipuladas diretamente, ou realizarmos condicionais ou tratamentos
 // Todos os outros parâmetros podem vir em um objeto só (...props)
 /* <InputBase type={type} id={id} name={name} value={value} onChange={onChange} /> */
-export default function Input({ onChange, type, ...props }) {
+export default function Input({ onChange, type, checked, ...props }) {
   return (
-    <InputBase type={type} onChange={onChange} {...props} />
+    <InputBase type={type} onChange={onChange} checked={checked} {...props} />
   );
 }
 

@@ -52,7 +52,10 @@ Widget.Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;
-  background-color: ${({ theme }) => theme.colors.primary}; 
+  background-color: ${({ theme }) => theme.colors.primary};
+  h1 {
+    color: ${({ theme }) => theme.colors.white}; 
+  }
 
   * {
     margin: 0;
@@ -77,7 +80,7 @@ Widget.Topic = styled.a`
   
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: .9;
   }
 `;
 

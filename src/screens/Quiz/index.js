@@ -13,8 +13,9 @@ import GitHubCorner from '../../components/GitHubCorner';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import BackLinkArrow from '../../components/BackLinkArrow';
-import animationData from './animations/loading.json';
-import movingSeaData from './animations/wave.json';
+import animationData from './animations/loading-recycle.json';
+import animationData2 from './animations/small-waves.json';
+import animationData3 from './animations/recycling-bin.json';
 import parse from "html-react-parser";
 import LinkButton from '../../components/LinkButton';
 import Subtitle from '../../components/Subtitle';
@@ -48,12 +49,12 @@ function LoadingWidget() {
   return (
     <Widget>
       <Widget.Header>
-        Carregando...
+        <h1>Carregando...</h1>
       </Widget.Header>
       <Widget.Content>
         <Lottie
           options={defaultOptions}
-          height="190px"
+          height="auto"
           width="100%"
         />
       </Widget.Content>
@@ -63,8 +64,8 @@ function LoadingWidget() {
 }
 function SeaWidget() {
   const [animationState, setAnimationState] = useState({
-    isStopped: false,
-    isPaused: false,
+    isStopped: false, isPaused: false,
+    direction: 1,
   });
 
   // Se tiver um botão por exemplo pra fazer a animação ocorrer teria que ser assim
@@ -74,21 +75,70 @@ function SeaWidget() {
   //     isStopped: !animationState.isStopped, // o contrário do que tiver
   //   })
   // }, []);
+  // const reverseAnimation = -1;
+  // const normalAnimation = 1;
+  // useEffect(() => {
+  //   setAnimationState({
+  //     ...animationState,
+  //     isStopped: false,
+  //     direction: animationState.direction === normalAnimation 
+  //     ? reverseAnimation 
+  //     : normalAnimation,
+  //   })
+  // }, []);
 
   const defaultOptions = {
     loop: true, // false não roda em loop infinito
     autoplay: true, // false não carrega a animação quando recarrega
-    movingSeaData,
+    animationData: animationData2,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
 
+  
   return (
     <Lottie
       options={defaultOptions}
-      height="400px"
-      width="400px"
+      direction={animationState.direction}
+      height="79px"
+      width="100%"
+      style={{
+        position: 'absolute',
+        bottom: 28,
+        zIndex: 9
+      }}
+    />
+  );
+}
+function RecyclingBinWidget() {
+  const [animationState, setAnimationState] = useState({
+    isStopped: false, isPaused: false,
+    direction: 1,
+  });
+
+  const defaultOptions = {
+    loop: true, // false não roda em loop infinito
+    autoplay: true, // false não carrega a animação quando recarrega
+    animationData: animationData3,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
+  
+  return (
+    <Lottie
+      options={defaultOptions}
+      direction={animationState.direction}
+      height="240px"
+      width="180px"
+      style={{
+        position: 'absolute',
+        bottom: 22,
+        right: 0,
+        zIndex: 9
+      }}
     />
   );
 }
@@ -119,7 +169,7 @@ function ResultWidget({ results, totalQuestions, externalTextResults }) {
       animate="show"
     >
       <Widget.Header>
-        Resultado
+        <h1>Resultado</h1>
       </Widget.Header>
 
       <Widget.Content>
@@ -173,13 +223,14 @@ function QuestionWidget({
   const hasAlternativeSelected = selectedAlternative !== undefined;
   const questionId = `question__${questionIndex}`;
   var [hasAlreadyConfirmedDelay, setHasAlreadyConfirmedDelay] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   // delay de alguns segundos para o botão de próxima pergunta ser ativado
   useEffect(()=> {
     if (hasAlreadyConfirmed) {
       setTimeout(()=> {
           setHasAlreadyConfirmedDelay(true);
-        }, 2000)
+        }, 1000)
     } else {
       setHasAlreadyConfirmedDelay(false);
     }
@@ -278,10 +329,10 @@ function QuestionWidget({
     >
       <Widget.Header>
         <BackLinkArrow href="/" />
-        <h3>
+        <h1>
           {/* Não usa o $ antes do {} pois é sintaxe do React, se fosse sintaxe do js seria ${} */}
           {`Pergunta ${questionIndex + 1} de ${totalQuestions} `}
-        </h3>
+        </h1>
       </Widget.Header>
       <img
         alt="Descrição"
@@ -304,6 +355,7 @@ function QuestionWidget({
           onSubmit={(event) => {
             event.preventDefault(); // não atualiza a página
             setIsQuestionSubmited(true); // respondeu a pergunta
+            setChecked(false);
             if(hasAlreadyConfirmed){
               setTimeout(() => {
                 addResult(isCorrect);
@@ -335,6 +387,7 @@ function QuestionWidget({
                     setSelectedAlternative(alternativeIndex);
                   }}
                   type="radio"
+                  checked={isSelected}
                   // se já clicou em confirmar (hasAlreadyConfirmed=true), o botão deve ser desabilitado
                   disabled={hasAlreadyConfirmed}
                 />
@@ -609,9 +662,10 @@ export default function QuizPage({
       </QuizContainer>
       {/* <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} /> */}
       <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
-      {/* <Footer><SeaWidget/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
+      {/* <RecyclingBinWidget/> */}
     </QuizBackground>
-    <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
+    {/* <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
+      <Footer><SeaWidget/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </BreakpointProvider>
     </>
   );
