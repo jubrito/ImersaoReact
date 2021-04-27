@@ -15,11 +15,12 @@ import Button from '../../components/Button';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import animationData from './animations/loading-recycle.json';
 import animationData2 from './animations/small-waves.json';
-import animationData3 from './animations/recycling-bin.json';
+import animationData3 from './animations/mild-waves.json';
 import parse from "html-react-parser";
 import LinkButton from '../../components/LinkButton';
 import Subtitle from '../../components/Subtitle';
 import Footer from '../../components/Footer';
+import SeaWidget from '../../components/SeaWidget';
 import {BreakpointProvider} from '../../components/BreakpointProvider';
 import {useBreakpoint} from '../../components/BreakpointProvider'
 
@@ -60,55 +61,6 @@ function LoadingWidget() {
       </Widget.Content>
 
     </Widget>
-  );
-}
-function SeaWidget() {
-  const [animationState, setAnimationState] = useState({
-    isStopped: false, isPaused: false,
-    direction: 1,
-  });
-
-  // Se tiver um botão por exemplo pra fazer a animação ocorrer teria que ser assim
-  // useEffect(() => {
-  //   setAnimationState({
-  //     ...animationState,
-  //     isStopped: !animationState.isStopped, // o contrário do que tiver
-  //   })
-  // }, []);
-  // const reverseAnimation = -1;
-  // const normalAnimation = 1;
-  // useEffect(() => {
-  //   setAnimationState({
-  //     ...animationState,
-  //     isStopped: false,
-  //     direction: animationState.direction === normalAnimation 
-  //     ? reverseAnimation 
-  //     : normalAnimation,
-  //   })
-  // }, []);
-
-  const defaultOptions = {
-    loop: true, // false não roda em loop infinito
-    autoplay: true, // false não carrega a animação quando recarrega
-    animationData: animationData2,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
-  
-  return (
-    <Lottie
-      options={defaultOptions}
-      direction={animationState.direction}
-      height="79px"
-      width="100%"
-      style={{
-        position: 'absolute',
-        bottom: 28,
-        zIndex: 9
-      }}
-    />
   );
 }
 function RecyclingBinWidget() {
@@ -669,7 +621,7 @@ export default function QuizPage({
       {/* <RecyclingBinWidget/> */}
     </QuizBackground>
     {/* <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
-      <Footer><SeaWidget/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
+      <Footer><SeaWidget width="100%" height="79px" bottom="28px"/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </BreakpointProvider>
     </>
   );

@@ -9,6 +9,7 @@ import db from '../db.json';
 import Widget from '../src/components/Widget';
 import Link from '../src/components/Link';
 import Footer from '../src/components/Footer';
+import SeaWidget from '../src/components/SeaWidget';
 import Credits from '../src/components/Credits';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
@@ -125,11 +126,11 @@ export default function Home() {
           </Widget.Content>
         </Widget> */}
         <Credits
-          as={motion.footer}
+          as={motion.div}
           transition={{ delay: 0.5, duration: 0.5 }}
           variants={{
             // o elemento terá estados de animação
-            show: { opacity: 1, y: '0', display: 'block' },
+            show: { opacity: 1, y: '0', display: 'flex' },
             hidden: { opacity: 0, y: '100%', display: 'none' },
           }}
           initial="hidden"
@@ -137,7 +138,7 @@ export default function Home() {
         />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
-      <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
+      <Footer><SeaWidget width="100%" height="180px" bottom="28px"/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
     </QuizBackground>
   );
 }
