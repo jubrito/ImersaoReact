@@ -494,12 +494,12 @@ function QuestionExplanation({
         >
         <div ref={myRef}>
           <Subtitle><strong>Resposta correta:</strong> {answer}</Subtitle>
-          {explanations.map((explanation) => {
-           return <p>{parse(explanation)}</p>
+          {explanations.map((explanation, explanationIndex) => {
+           return <div key={explanationIndex}>{parse(explanation)}</div>
           })}
           <p className="source">Fonte: 
-          {source.map((src) => {
-           return <a href={src.url} target="_blank">{src.title}</a>
+          {source.map((src, srcIndex) => {
+           return <a href={src.url} key={srcIndex} target="_blank">{src.title}</a>
           })}
           </p>
         </div>
