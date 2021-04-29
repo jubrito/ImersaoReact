@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   const [projectName, gitHubUser] = context.query.id.split('___');
 
   try {
-    const externalDB = await fetch(`https://${projectName}.${gitHubUser}.vercel.app/api/db`)
+    const externalDB = await fetch(`https://${projectName}.${gitHubUser}.vercel.app/api_db/db`)
       .then((serverResponse) => {
         // O fetch retorna o .then() quando o primeiro bit que chegou do servidor chegar no browser
         // Por isso queremos tratar apenas quando o servidor retornar ok (200)
