@@ -587,7 +587,42 @@ export default function QuizPage({
     // Ao invés de fazer assim abaixo, criamos o componente com o style do background
     // <div style={{ backgroundImage: `url (${db.bg})` }}>
     <>
-    <p>oi</p>
+    <BreakpointProvider queries={queries}>
+    <QuizBackground backgroundImage={bg} backgroundImageResponsive={bg_mobile}>
+      <QuizContainer>
+        <QuizLogo />
+        {/* Se for loading renderiza o LoadingWidget */}
+        {screenState == screenStates.LOADING && <LoadingWidget />}
+        {screenState == screenStates.QUIZ && (
+          <>
+          <div className="relative">
+            <QuestionWidget
+              question={question}
+              questionIndex={questionIndex}
+              totalQuestions={totalQuestions}
+              onSubmit={handleQuizSubmit}
+              handleExplanation={handleExplanation}
+              addResult={addResult}
+              hasAlreadyConfirmed={hasAlreadyConfirmed}
+            />
+              <QuestionExplanation
+                explanations={explanations}
+                source={source}
+                animate={action}
+                answer={answer}>
+              </QuestionExplanation>
+          </div>
+          </>
+        )}
+        {screenState == screenStates.RESULT && <ResultWidget results={results} totalQuestions={totalQuestions} externalTextResults={externalTextResults}/>}
+      </QuizContainer>
+      {/* <GitHubCorner projectUrl={`https://github.com/${gitHubUser}/${projectName}`} /> */}
+      <GitHubCorner projectUrl="https://github.com/jubrito/uxuiquiz"/>
+      {/* <RecyclingBinWidget/> */}
+    </QuizBackground>
+    {/* <Footer><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer> */}
+      <Footer><SeaWidget width="100%" height="79px" bottom="28px"/><p>Adaptação do desafio proposto pela Alura na Imersão React feita por Juliana Witzke de Brito</p></Footer>
+    </BreakpointProvider>
     </>
   );
 }
