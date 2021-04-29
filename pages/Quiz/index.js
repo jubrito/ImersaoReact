@@ -5,14 +5,13 @@ import QuizScreen from '../../src/screens/Quiz';
 import db from '../../db.json';
 export default function QuizDaGaleraPage() {
   return (
-    <p>oi</p>
-    // <ThemeProvider theme={db.theme}>
-    //   <QuizScreen
-    //     externalQuestions={db.questions}
-    //     externalBg={db.bg}
-    //     externalBgMobile={db.bg_mobile}
-    //     externalTextResults={db.results}
-    //   />
-    // </ThemeProvider>
+    <ThemeProvider theme={db.theme}>
+      <QuizScreen
+        externalQuestions={db.questions}
+        externalBg={db.bg}
+        externalBgMobile={db.bg_mobile}
+        externalTextResults={db.results}
+      />
+    </ThemeProvider>
   );
 }
